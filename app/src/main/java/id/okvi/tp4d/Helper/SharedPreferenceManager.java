@@ -10,6 +10,7 @@ import id.okvi.tp4d.Model.UserLoginModel;
 
 public class SharedPreferenceManager {
     private static final String SHARED_PREF_NAME = "tp4d";
+    private static final String ID_PEMOHON = "id_pemohon";
     private static final String JENIS = "jenis";
     private static final String EMAIL = "email";
     private static final String INSTANSI = "instansi";
@@ -32,6 +33,7 @@ public class SharedPreferenceManager {
     public void userLogin(UserLoginModel userLoginModel) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(ID_PEMOHON, userLoginModel.getId_pemohon());
         editor.putString(JENIS, userLoginModel.getJenis());
         editor.putString(EMAIL, userLoginModel.getEmail());
         editor.putString(INSTANSI, userLoginModel.getInstansi());
@@ -46,8 +48,9 @@ public class SharedPreferenceManager {
     public UserLoginModel getUser() {
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         UserLoginModel userLoginModel = new UserLoginModel();
-        userLoginModel.setEmail(sharedPreferences.getString(EMAIL, null));
+        userLoginModel.setId_pemohon(sharedPreferences.getString(ID_PEMOHON, null));
         userLoginModel.setJenis(sharedPreferences.getString(JENIS, null));
+        userLoginModel.setEmail(sharedPreferences.getString(EMAIL, null));
         userLoginModel.setInstansi(sharedPreferences.getString(INSTANSI, null));
         return userLoginModel;
     }

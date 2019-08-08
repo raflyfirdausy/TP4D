@@ -87,9 +87,9 @@ public class PemohonLoginActivity extends AppCompatActivity {
                                 if (object.getInt("status") == 1) {
                                     JSONArray jsonArray = object.getJSONArray("result");
                                     JSONObject jsonObject = jsonArray.getJSONObject(0);
-                                    new Bantuan(context).alertDialogPeringatan(object.getString("result"));
                                     SharedPreferenceManager.getInstance(context).userLogin(
                                             new UserLoginModel(
+                                                    jsonObject.getString("id_pemohon"),
                                                     "pemohon",
                                                     jsonObject.getString("email"),
                                                     jsonObject.getString("instansi")
