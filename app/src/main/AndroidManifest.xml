@@ -15,14 +15,13 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="m">
+        <activity android:name=".Activity.PemohonHomeActivity"></activity>
         <activity
             android:name=".Activity.PemohonRegistrasiActivity"
             tools:ignore="InnerclassSeparator" />
         <activity
             android:name=".Activity.PemohonLoginActivity"
-            tools:ignore="InnerclassSeparator">
-
-        </activity>
+            tools:ignore="InnerclassSeparator"></activity>
         <activity
             android:name=".Activity.SplashScreenActivity"
             tools:ignore="InnerclassSeparator">
@@ -34,9 +33,7 @@
         </activity>
         <activity
             android:name=".Activity.MainActivity"
-            tools:ignore="InnerclassSeparator">
-
-        </activity>
+            tools:ignore="InnerclassSeparator"></activity>
     </application>
 
 </manifest>

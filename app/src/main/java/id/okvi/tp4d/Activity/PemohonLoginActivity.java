@@ -18,6 +18,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -26,6 +27,8 @@ import java.util.Map;
 
 import id.okvi.tp4d.Helper.API;
 import id.okvi.tp4d.Helper.Bantuan;
+import id.okvi.tp4d.Helper.SharedPreferenceManager;
+import id.okvi.tp4d.Model.UserLoginModel;
 import id.okvi.tp4d.R;
 
 public class PemohonLoginActivity extends AppCompatActivity {
@@ -82,7 +85,19 @@ public class PemohonLoginActivity extends AppCompatActivity {
                             try {
                                 JSONObject object = new JSONObject(response);
                                 if (object.getInt("status") == 1) {
+                                    JSONArray jsonArray = object.getJSONArray("result");
+                                    JSONObject jsonObject = jsonArray.getJSONObject(0);
                                     new Bantuan(context).alertDialogPeringatan(object.getString("result"));
+                                    SharedPreferenceManager.getInstance(context).userLogin(
+                                            new UserLoginModel(
+                                                    "pemohon",
+                                                    jsonObject.getString("email"),
+                                                    jsonObject.getString("instansi")
+                                            )
+                                    );
+                                    Intent intent = new Intent(context, PemohonHomeActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
                                 } else {
                                     new Bantuan(context).alertDialogPeringatan(object.getString("result"));
                                 }
