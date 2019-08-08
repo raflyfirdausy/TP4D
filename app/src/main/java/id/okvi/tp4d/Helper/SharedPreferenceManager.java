@@ -57,6 +57,8 @@ public class SharedPreferenceManager {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
         editor.apply();
-        context.startActivity(new Intent(context, SplashScreenActivity.class));
+        Intent intent = new Intent(context, SplashScreenActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        context.startActivity(intent);
     }
 }

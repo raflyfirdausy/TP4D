@@ -68,7 +68,7 @@
                 android:layout_marginTop="8dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/dftr_mail"
+                    android:id="@+id/etEmail"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:hint="Email"
@@ -80,7 +80,7 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/dftr_instansi"
+                        android:id="@+id/etInstansi"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:hint="Instansi"
@@ -88,7 +88,6 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/dftr_passwrd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:errorEnabled="true"
@@ -97,7 +96,7 @@
                     app:passwordToggleTint="@color/colorPrimaryDark">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/dftr_password"
+                        android:id="@+id/etPassword"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:hint="Password"
@@ -105,7 +104,6 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/verif_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:errorEnabled="true"
@@ -114,7 +112,7 @@
                     app:passwordToggleTint="@color/colorPrimaryDark">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/verif_dftr_password"
+                        android:id="@+id/etKonfirmasiPassword"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:hint="Konfirmasi Password"
@@ -123,7 +121,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/tmbl_daftar"
+                android:id="@+id/btnDaftar"
                 style="@style/Widget.AppCompat.Button"
                 android:layout_width="300dp"
                 android:layout_height="45dp"
