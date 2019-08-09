@@ -74,7 +74,6 @@ public class PermohonanBaruDetailActivity extends AppCompatActivity {
 
     private ImageButton btnTambah;
     private ImageButton btnBatal;
-    private Bitmap gambarReadyUpload = null;
 
     private String jenis = "Pengadaan Fisik";
     private int tanggal, bulan, tahun;
@@ -350,6 +349,7 @@ public class PermohonanBaruDetailActivity extends AppCompatActivity {
                     stringMap.put("alamat_instansi", daftarPemohonModel.getAlamat_instansi());
                     stringMap.put("nomer_surat", daftarPemohonModel.getNomer_surat());
                     stringMap.put("tanggal_surat", daftarPemohonModel.getTanggal_surat());
+                    stringMap.put("tanggal_masuk", daftarPemohonModel.getTanggal_masuk());
                     stringMap.put("jenis_kegiatan", jenis);
                     stringMap.put("pagu_anggaran", etPaguAnggaran.getEditText().getText().toString());
                     stringMap.put("instansi", etInstansi.getEditText().getText().toString());
