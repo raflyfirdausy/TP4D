@@ -10,8 +10,8 @@ public class DaftarPemohonModel implements Serializable {
             instansi_pemohon,
             alamat_instansi,
             nomer_surat,
-            tanggalSurat,
-            tanggalMasuk,
+            tanggal_surat,
+            tanggal_masuk,
             jenis_kegiatan,
             pagu_anggaran,
             instansi,
@@ -22,14 +22,10 @@ public class DaftarPemohonModel implements Serializable {
             konsultan_perencanaan,
             awal_pekerjaan,
             akhir_pekerjaan,
-            rencana_uitzet,
-            rencana_pcm,
-            rencana_mc,
-            rencana_pho,
-            perencanaan,
-            persiapan,
-            pelaksanaan,
-            penyerahan_hasil,
+            uitzet_perencanaan,
+            pcm_persiapan,
+            mc_pelaksanaan,
+            pho_penyerahan_hasil,
             nama_pegawai_pemohon,
             nomor_hp,
             email,
@@ -83,20 +79,20 @@ public class DaftarPemohonModel implements Serializable {
         this.nomer_surat = nomer_surat;
     }
 
-    public String getTanggalSurat() {
-        return tanggalSurat;
+    public String getTanggal_surat() {
+        return tanggal_surat;
     }
 
-    public void setTanggalSurat(String tanggalSurat) {
-        this.tanggalSurat = tanggalSurat;
+    public void setTanggal_surat(String tanggal_surat) {
+        this.tanggal_surat = tanggal_surat;
     }
 
-    public String getTanggalMasuk() {
-        return tanggalMasuk;
+    public String getTanggal_masuk() {
+        return tanggal_masuk;
     }
 
-    public void setTanggalMasuk(String tanggalMasuk) {
-        this.tanggalMasuk = tanggalMasuk;
+    public void setTanggal_masuk(String tanggal_masuk) {
+        this.tanggal_masuk = tanggal_masuk;
     }
 
     public String getJenis_kegiatan() {
@@ -179,68 +175,36 @@ public class DaftarPemohonModel implements Serializable {
         this.akhir_pekerjaan = akhir_pekerjaan;
     }
 
-    public String getRencana_uitzet() {
-        return rencana_uitzet;
+    public String getUitzet_perencanaan() {
+        return uitzet_perencanaan;
     }
 
-    public void setRencana_uitzet(String rencana_uitzet) {
-        this.rencana_uitzet = rencana_uitzet;
+    public void setUitzet_perencanaan(String uitzet_perencanaan) {
+        this.uitzet_perencanaan = uitzet_perencanaan;
     }
 
-    public String getRencana_pcm() {
-        return rencana_pcm;
+    public String getPcm_persiapan() {
+        return pcm_persiapan;
     }
 
-    public void setRencana_pcm(String rencana_pcm) {
-        this.rencana_pcm = rencana_pcm;
+    public void setPcm_persiapan(String pcm_persiapan) {
+        this.pcm_persiapan = pcm_persiapan;
     }
 
-    public String getRencana_mc() {
-        return rencana_mc;
+    public String getMc_pelaksanaan() {
+        return mc_pelaksanaan;
     }
 
-    public void setRencana_mc(String rencana_mc) {
-        this.rencana_mc = rencana_mc;
+    public void setMc_pelaksanaan(String mc_pelaksanaan) {
+        this.mc_pelaksanaan = mc_pelaksanaan;
     }
 
-    public String getRencana_pho() {
-        return rencana_pho;
+    public String getPho_penyerahan_hasil() {
+        return pho_penyerahan_hasil;
     }
 
-    public void setRencana_pho(String rencana_pho) {
-        this.rencana_pho = rencana_pho;
-    }
-
-    public String getPerencanaan() {
-        return perencanaan;
-    }
-
-    public void setPerencanaan(String perencanaan) {
-        this.perencanaan = perencanaan;
-    }
-
-    public String getPersiapan() {
-        return persiapan;
-    }
-
-    public void setPersiapan(String persiapan) {
-        this.persiapan = persiapan;
-    }
-
-    public String getPelaksanaan() {
-        return pelaksanaan;
-    }
-
-    public void setPelaksanaan(String pelaksanaan) {
-        this.pelaksanaan = pelaksanaan;
-    }
-
-    public String getPenyerahan_hasil() {
-        return penyerahan_hasil;
-    }
-
-    public void setPenyerahan_hasil(String penyerahan_hasil) {
-        this.penyerahan_hasil = penyerahan_hasil;
+    public void setPho_penyerahan_hasil(String pho_penyerahan_hasil) {
+        this.pho_penyerahan_hasil = pho_penyerahan_hasil;
     }
 
     public String getNama_pegawai_pemohon() {

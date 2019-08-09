@@ -77,13 +77,16 @@ public class PermohonanBaruActivity extends AppCompatActivity {
         } else {
             DaftarPemohonModel daftarPemohonModel = new DaftarPemohonModel();
             daftarPemohonModel.setId_pemohon(SharedPreferenceManager.getInstance(context).getUser().getId_pemohon());
+            daftarPemohonModel.setInstansi_pemohon(etInstansiPemohon.getText().toString());
             daftarPemohonModel.setAlamat_instansi(etAlamatInstansi.getText().toString());
             daftarPemohonModel.setNomer_surat(etNomorSurat.getText().toString());
-            daftarPemohonModel.setTanggalSurat(etTanggalSurat.getText().toString());
-            daftarPemohonModel.setTanggalMasuk(etTanggalMasuk.getText().toString());
+            daftarPemohonModel.setTanggal_surat(etTanggalSurat.getText().toString());
+            daftarPemohonModel.setTanggal_masuk(etTanggalMasuk.getText().toString());
 
             Intent intent = new Intent(context, PermohonanBaruDetailActivity.class);
-            intent.putExtra("data", daftarPemohonModel);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("data", daftarPemohonModel);
+            intent.putExtras(bundle);
             startActivity(intent);
         }
     }
@@ -99,9 +102,9 @@ public class PermohonanBaruActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         if (jenis.equalsIgnoreCase("tanggalSurat")) {
-                            etTanggalSurat.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+                            etTanggalSurat.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
                         } else {
-                            etTanggalMasuk.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+                            etTanggalMasuk.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
                         }
                     }
                 }, tahun, bulan, tanggal);

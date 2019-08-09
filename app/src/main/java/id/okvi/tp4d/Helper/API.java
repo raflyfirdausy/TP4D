@@ -6,4 +6,5 @@ public class API {
 
     public final static String LOGIN_PEMOHON = HOST_ROOT + "login_pemohon.php";
     public final static String REGISTER_PEMOHON = HOST_ROOT + "register_pemohon.php";
+    public final static String INSERT_PEMOHON = HOST_ROOT + "insert_pemohon.php";
 }
