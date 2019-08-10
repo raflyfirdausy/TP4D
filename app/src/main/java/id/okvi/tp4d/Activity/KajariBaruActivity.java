@@ -46,7 +46,11 @@ public class KajariBaruActivity extends AppCompatActivity {
     private void init() {
         rvKonten = findViewById(R.id.rvKonten);
         tvKeterangan = findViewById(R.id.tvKeterangan);
+    }
 
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
         getDataKajariBaru();
     }
 
@@ -64,6 +68,7 @@ public class KajariBaruActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         progressDialog.dismiss();
+                        list.clear();
                         try {
                             JSONObject object = new JSONObject(response);
                             if (object.getInt("status") == 1) {
