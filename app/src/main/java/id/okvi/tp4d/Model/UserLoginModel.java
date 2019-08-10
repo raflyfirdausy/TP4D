@@ -3,7 +3,24 @@ package id.okvi.tp4d.Model;
 import java.io.Serializable;
 
 public class UserLoginModel implements Serializable {
-    private String id_pemohon, jenis, email, instansi;
+    private String id_pemohon, jenis, email, instansi, nip, nama;
+
+    public UserLoginModel(String id_pemohon, String jenis, String email, String instansi, String nip, String nama) {
+        this.id_pemohon = id_pemohon;
+        this.jenis = jenis;
+        this.email = email;
+        this.instansi = instansi;
+        this.nip = nip;
+        this.nama = nama;
+    }
+
+    public UserLoginModel(String id_pemohon, String jenis, String email, String instansi, String nip) {
+        this.id_pemohon = id_pemohon;
+        this.jenis = jenis;
+        this.email = email;
+        this.instansi = instansi;
+        this.nip = nip;
+    }
 
     public UserLoginModel(String id_pemohon, String jenis, String email, String instansi) {
         this.id_pemohon = id_pemohon;
@@ -25,6 +42,22 @@ public class UserLoginModel implements Serializable {
 
     public UserLoginModel() {
 
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public String getNip() {
+        return nip;
+    }
+
+    public void setNip(String nip) {
+        this.nip = nip;
     }
 
     public String getId_pemohon() {

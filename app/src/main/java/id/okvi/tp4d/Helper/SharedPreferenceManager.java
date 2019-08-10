@@ -14,6 +14,8 @@ public class SharedPreferenceManager {
     private static final String JENIS = "jenis";
     private static final String EMAIL = "email";
     private static final String INSTANSI = "instansi";
+    private static final String NIP = "nip";
+    private static final String NAMA = "nama";
     @SuppressLint("StaticFieldLeak")
     private static SharedPreferenceManager instance;
     @SuppressLint("StaticFieldLeak")
@@ -37,6 +39,8 @@ public class SharedPreferenceManager {
         editor.putString(JENIS, userLoginModel.getJenis());
         editor.putString(EMAIL, userLoginModel.getEmail());
         editor.putString(INSTANSI, userLoginModel.getInstansi());
+        editor.putString(NIP, userLoginModel.getNip());
+        editor.putString(NAMA, userLoginModel.getNama());
         editor.apply();
     }
 
@@ -52,6 +56,8 @@ public class SharedPreferenceManager {
         userLoginModel.setJenis(sharedPreferences.getString(JENIS, null));
         userLoginModel.setEmail(sharedPreferences.getString(EMAIL, null));
         userLoginModel.setInstansi(sharedPreferences.getString(INSTANSI, null));
+        userLoginModel.setNip(sharedPreferences.getString(NIP, null));
+        userLoginModel.setNama(sharedPreferences.getString(NAMA, null));
         return userLoginModel;
     }
 

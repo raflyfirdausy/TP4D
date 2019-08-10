@@ -62,7 +62,7 @@
                 android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/login_mail"
+                android:id="@+id/etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_8"
@@ -71,7 +71,6 @@
                 android:layout_marginEnd="@dimen/dp_8">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etEmail"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:hint="Email"
@@ -79,7 +78,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/login_password"
+                android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_8"
@@ -91,7 +90,6 @@
                 app:passwordToggleTint="@color/colorPrimaryDark">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etPassword"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:hint="Password"

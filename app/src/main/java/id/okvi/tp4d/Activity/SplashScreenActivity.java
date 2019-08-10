@@ -25,8 +25,12 @@ public class SplashScreenActivity extends AppCompatActivity {
                             .getJenis().equalsIgnoreCase("pemohon")) {
                         startActivity(new Intent(context, PemohonHomeActivity.class));
                         finish();
+                    } else if (SharedPreferenceManager.getInstance(context).getUser()
+                            .getJenis().equalsIgnoreCase("kajari")) {
+                        startActivity(new Intent(context, KajariHomeActivity.class));
+                        finish();
                     } else {
-                        startActivity(new Intent(context, PemohonLoginActivity.class));
+                        startActivity(new Intent(context, PetugasHomeActivity.class));
                         finish();
                     }
                 } else {
