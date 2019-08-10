@@ -70,6 +70,8 @@ public class PermohonanBaruDetailActivity extends AppCompatActivity {
     private TextInputLayout etNamaPegawaiPemohon;
     private TextInputLayout etNomorHp;
     private TextInputLayout etEmail;
+    private TextInputLayout etAwalPekerjaan;
+    private TextInputLayout etAkhirPekerjaan;
     private ImageView ivFotoDokumen;
 
     private ImageButton btnTambah;
@@ -110,6 +112,8 @@ public class PermohonanBaruDetailActivity extends AppCompatActivity {
         etNamaPegawaiPemohon = findViewById(R.id.etNamaPegawaiPemohon);
         etNomorHp = findViewById(R.id.etNomorHp);
         etEmail = findViewById(R.id.etEmail);
+        etAwalPekerjaan = findViewById(R.id.etAwalPekerjaan);
+        etAkhirPekerjaan = findViewById(R.id.etAkhirPekerjaan);
 
         ivFotoDokumen = findViewById(R.id.ivFotoDokumen);
         btnTambah = findViewById(R.id.btnTambah);
@@ -189,6 +193,20 @@ public class PermohonanBaruDetailActivity extends AppCompatActivity {
             }
         });
 
+        etAwalPekerjaan.getEditText().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getTanggal("etAwalPekerjaan");
+            }
+        });
+
+        etAkhirPekerjaan.getEditText().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getTanggal("etAkhirPekerjaan");
+            }
+        });
+
         ivFotoDokumen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -217,6 +235,10 @@ public class PermohonanBaruDetailActivity extends AppCompatActivity {
                             etMcPelaksanaan.getEditText().setText(year + "-" + (month + 1) + "-" + dayOfMonth);
                         } else if (jenisCuy.equalsIgnoreCase("etPhoPenyerahanHasil")) {
                             etPhoPenyerahanHasil.getEditText().setText(year + "-" + (month + 1) + "-" + dayOfMonth);
+                        } else if (jenisCuy.equalsIgnoreCase("etAwalPekerjaan")) {
+                            etAwalPekerjaan.getEditText().setText(year + "-" + (month + 1) + "-" + dayOfMonth);
+                        } else if (jenisCuy.equalsIgnoreCase("etAkhirPekerjaan")) {
+                            etAkhirPekerjaan.getEditText().setText(year + "-" + (month + 1) + "-" + dayOfMonth);
                         } else {
                             new Bantuan(context).toastLong("Error get tanggal ");
                         }
@@ -307,7 +329,13 @@ public class PermohonanBaruDetailActivity extends AppCompatActivity {
             etEmail.getEditText().setError("Harus diisi");
             etEmail.requestFocus();
         } else if (ivFotoDokumen.getDrawable().getConstantState() == getResources().getDrawable(R.drawable.ic_image).getConstantState()) {
-            new Bantuan(context).alertDialogPeringatan("Tambahkan foto surat terlebih dahulu");
+            new Bantuan(context).alertDialogPeringatan("Tambahkan foto dokumen terlebih dahulu");
+        } else if (TextUtils.isEmpty(etAwalPekerjaan.getEditText().getText().toString())) {
+            etAwalPekerjaan.getEditText().setError("Harus diisi");
+            etAwalPekerjaan.requestFocus();
+        } else if (TextUtils.isEmpty(etAkhirPekerjaan.getEditText().getText().toString())) {
+            etAkhirPekerjaan.getEditText().setError("Harus diisi");
+            etAkhirPekerjaan.requestFocus();
         } else {
             final ProgressDialog progressDialog = new ProgressDialog(context);
             progressDialog.setMessage("Loading ...");
@@ -328,7 +356,12 @@ public class PermohonanBaruDetailActivity extends AppCompatActivity {
                             progressDialog.dismiss();
                             try {
                                 JSONObject object = new JSONObject(response);
-                                new Bantuan(context).alertDialogInformasi(object.getString("result"));
+                                new Bantuan(context).toastLong(object.getString("result"));
+                                if (object.getInt("status") == 1) {
+                                    Intent intent = new Intent(context, PemohonHomeActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
+                                }
                             } catch (JSONException e) {
                                 e.printStackTrace();
                                 new Bantuan(context).toastLong(e.getMessage());
@@ -366,6 +399,8 @@ public class PermohonanBaruDetailActivity extends AppCompatActivity {
                     stringMap.put("nomor_hp", etNomorHp.getEditText().getText().toString());
                     stringMap.put("email", etEmail.getEditText().getText().toString());
                     stringMap.put("foto_dokumen", encodedImage);
+                    stringMap.put("awal_pekerjaan", etAwalPekerjaan.getEditText().getText().toString());
+                    stringMap.put("akhir_pekerjaan", etAkhirPekerjaan.getEditText().getText().toString());
                     return stringMap;
                 }
             };
