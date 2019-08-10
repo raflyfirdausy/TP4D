@@ -10,4 +10,5 @@ public class API {
     public final static String LOGIN_PETUGAS = HOST_ROOT + "login_petugas.php";
     public final static String LOGIN_KAJARI = HOST_ROOT + "login_kajari.php";
     public final static String GET_KAJARI_BARU = HOST_ROOT + "get_kajari_baru.php";
+    public final static String UPDATE_DISPOSISI = HOST_ROOT + "update_disposisi.php";
 }

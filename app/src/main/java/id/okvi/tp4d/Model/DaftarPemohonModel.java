@@ -29,7 +29,16 @@ public class DaftarPemohonModel implements Serializable {
             nama_pegawai_pemohon,
             nomor_hp,
             email,
-            foto_dokumen;
+            foto_dokumen,
+            status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public String getId_daftar_pemohon() {
         return id_daftar_pemohon;

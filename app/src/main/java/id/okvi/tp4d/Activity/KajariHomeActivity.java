@@ -2,6 +2,7 @@ package id.okvi.tp4d.Activity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -49,5 +50,12 @@ public class KajariHomeActivity extends AppCompatActivity {
                 SharedPreferenceManager.getInstance(context).getUser().getNama() + " | " +
                         SharedPreferenceManager.getInstance(context).getUser().getNip()
         );
+
+        llPermohonan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context, KajariBaruActivity.class));
+            }
+        });
     }
 }
