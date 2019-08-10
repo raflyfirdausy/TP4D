@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
     android:gravity="center"
-    tools:context=".Activity.PemohonLoginActivity">
+    tools:context=".Activity.VerifikasiActivity">
 
     <RelativeLayout
         android:layout_width="340dp"
@@ -34,7 +34,7 @@
                 android:src="@drawable/logo_kejari" />
 
             <ImageView
-                android:id="@+id/ivTimPengawal"
+                android:id="@+id/tp"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
                 android:layout_alignParentEnd="true"
@@ -56,13 +56,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="LOGIN"
+                android:text="VERIFIKASI PETUGAS"
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="18pt"
+                android:textSize="13pt"
                 android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/login_mail"
+                android:id="@+id/etKodeMasuk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_8"
@@ -71,15 +71,14 @@
                 android:layout_marginEnd="@dimen/dp_8">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etEmail"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
-                    android:hint="Email"
-                    android:inputType="textEmailAddress" />
+                    android:hint="Kode Masuk"
+                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/login_password"
+                android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_8"
@@ -91,7 +90,6 @@
                 app:passwordToggleTint="@color/colorPrimaryDark">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etPassword"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:hint="Password"
@@ -99,7 +97,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/btnLogin"
+                android:id="@+id/btnVerifikasi"
                 style="@style/Widget.AppCompat.Button"
                 android:layout_width="300dp"
                 android:layout_height="45dp"
@@ -107,24 +105,12 @@
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/button_green"
                 android:gravity="center"
-                android:text="L O G I N"
+                android:text="VERIFIKASI"
                 android:textColor="@color/putih"
-                android:textSize="20sp" />
-
-            <Button
-                android:id="@+id/btnDaftar"
-                style="@style/Widget.AppCompat.Button"
-                android:layout_width="300dp"
-                android:layout_height="45dp"
-                android:layout_gravity="center"
-                android:background="@drawable/button_white"
-                android:text="R E G I S T E R"
-                android:textColor="@color/colorPrimaryDark"
                 android:textSize="20sp" />
 
         </LinearLayout>
 
     </RelativeLayout>
-
 
 </RelativeLayout>

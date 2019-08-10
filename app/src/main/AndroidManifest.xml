@@ -15,7 +15,11 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="m">
-        <activity android:name=".Activity.PermohonanBaruDetailActivity"></activity>
+        <activity android:name=".Activity.LoginPetugasActivity"></activity>
+        <activity android:name=".Activity.LoginKajariActivity" />
+        <activity android:name=".Activity.PilihLoginPetugasActivity" />
+        <activity android:name=".Activity.VerifikasiActivity" />
+        <activity android:name=".Activity.PermohonanBaruDetailActivity" />
         <activity android:name=".Activity.PermohonanBaruActivity" />
         <activity android:name=".Activity.PemohonHomeActivity" />
         <activity

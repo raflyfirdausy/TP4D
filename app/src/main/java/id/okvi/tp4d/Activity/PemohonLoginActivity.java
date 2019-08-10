@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -37,6 +38,7 @@ public class PemohonLoginActivity extends AppCompatActivity {
     TextInputEditText etPassword;
     Button btnLogin;
     Button btnDaftar;
+    ImageView ivTimPengawal;
     private Context context = PemohonLoginActivity.this;
 
     @Override
@@ -48,6 +50,7 @@ public class PemohonLoginActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
         btnDaftar = findViewById(R.id.btnDaftar);
+        ivTimPengawal = findViewById(R.id.ivTimPengawal);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +63,14 @@ public class PemohonLoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(context, PemohonRegistrasiActivity.class));
+            }
+        });
+
+        ivTimPengawal.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                startActivity(new Intent(context, VerifikasiActivity.class));
+                return true;
             }
         });
     }

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
     android:gravity="center"
-    tools:context=".Activity.PemohonLoginActivity">
+    tools:context=".Activity.LoginKajariActivity">
 
     <RelativeLayout
         android:layout_width="340dp"
@@ -56,9 +56,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="LOGIN"
+                android:text="LOGIN KAJARI"
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="18pt"
+                android:textSize="15pt"
                 android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -111,20 +111,8 @@
                 android:textColor="@color/putih"
                 android:textSize="20sp" />
 
-            <Button
-                android:id="@+id/btnDaftar"
-                style="@style/Widget.AppCompat.Button"
-                android:layout_width="300dp"
-                android:layout_height="45dp"
-                android:layout_gravity="center"
-                android:background="@drawable/button_white"
-                android:text="R E G I S T E R"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="20sp" />
-
         </LinearLayout>
 
     </RelativeLayout>
-
 
 </RelativeLayout>
