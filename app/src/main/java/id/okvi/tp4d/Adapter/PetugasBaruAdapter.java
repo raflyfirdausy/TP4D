@@ -1,8 +1,6 @@
 package id.okvi.tp4d.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,16 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import id.okvi.tp4d.Activity.KajariActionDisposisiActivity;
 import id.okvi.tp4d.Model.DaftarPemohonModel;
 import id.okvi.tp4d.R;
 
-public class KajariBaruAdapter extends RecyclerView.Adapter<KajariBaruAdapter.ViewHolder> {
+public class PetugasBaruAdapter extends RecyclerView.Adapter<PetugasBaruAdapter.ViewHolder> {
 
     private Context context;
     private List<DaftarPemohonModel> list;
 
-    public KajariBaruAdapter(Context context, List<DaftarPemohonModel> list) {
+    public PetugasBaruAdapter(Context context, List<DaftarPemohonModel> list) {
         this.context = context;
         this.list = list;
     }
@@ -31,31 +28,18 @@ public class KajariBaruAdapter extends RecyclerView.Adapter<KajariBaruAdapter.Vi
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(context).inflate(R.layout.item_baru_kajari, parent, false);
+        View itemView = LayoutInflater.from(context).inflate(R.layout.item_baru_petugas, parent, false);
         return new ViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.tvNomerSurat.setText(list.get(position).getNomer_surat());
         holder.tvTanggal.setText(list.get(position).getTanggal_surat());
-        holder.tvNomerRegistrasi.setText(list.get(position).getNo_regis());
+        holder.tvInstansiPemohon.setText(list.get(position).getInstansi_pemohon());
         holder.tvJenisKegiatan.setText(list.get(position).getJenis_kegiatan());
-        holder.tvLokasi.setText(list.get(position).getLokasi_kegiatan());
-        holder.tvWaktuPengerjaan.setText("ngko slur");
-
-        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, KajariActionDisposisiActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("data", list.get(position));
-                intent.putExtras(bundle);
-                context.startActivity(intent);
-            }
-        });
-
+        holder.tvPaguAnggaran.setText(list.get(position).getPagu_anggaran());
+        holder.tvTahun.setText(list.get(position).getTahun_anggaran());
     }
 
     @Override
@@ -66,21 +50,20 @@ public class KajariBaruAdapter extends RecyclerView.Adapter<KajariBaruAdapter.Vi
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvNomerSurat;
         TextView tvTanggal;
-        TextView tvNomerRegistrasi;
+        TextView tvInstansiPemohon;
         TextView tvJenisKegiatan;
-        TextView tvLokasi;
-        TextView tvWaktuPengerjaan;
+        TextView tvPaguAnggaran;
+        TextView tvTahun;
         LinearLayout parentLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             tvNomerSurat = itemView.findViewById(R.id.tvNomerSurat);
             tvTanggal = itemView.findViewById(R.id.tvTanggal);
-            tvNomerRegistrasi = itemView.findViewById(R.id.tvNomerRegistrasi);
+            tvInstansiPemohon = itemView.findViewById(R.id.tvInstansiPemohon);
             tvJenisKegiatan = itemView.findViewById(R.id.tvJenisKegiatan);
-            tvLokasi = itemView.findViewById(R.id.tvLokasi);
-            tvWaktuPengerjaan = itemView.findViewById(R.id.tvWaktuPengerjaan);
+            tvPaguAnggaran = itemView.findViewById(R.id.tvPaguAnggaran);
+            tvTahun = itemView.findViewById(R.id.tvTahun);
             parentLayout = itemView.findViewById(R.id.parentLayout);
         }
     }

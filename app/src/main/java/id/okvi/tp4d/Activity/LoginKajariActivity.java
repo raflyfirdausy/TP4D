@@ -74,6 +74,7 @@ public class LoginKajariActivity extends AppCompatActivity {
                             progressDialog.dismiss();
                             try {
                                 JSONObject object = new JSONObject(response);
+                                new Bantuan(context).alertDialogPeringatan(object.getString("result"));
                                 if (object.getInt("status") == 1) {
                                     JSONArray jsonArray = object.getJSONArray("result");
                                     JSONObject jsonObject = jsonArray.getJSONObject(0);
@@ -90,8 +91,6 @@ public class LoginKajariActivity extends AppCompatActivity {
                                     Intent intent = new Intent(context, KajariHomeActivity.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
-                                } else {
-                                    new Bantuan(context).alertDialogPeringatan(object.getString("result"));
                                 }
                             } catch (JSONException e) {
                                 new Bantuan(context).alertDialogPeringatan(e.getMessage());
