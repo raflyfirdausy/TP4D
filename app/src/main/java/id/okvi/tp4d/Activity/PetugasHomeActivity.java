@@ -74,5 +74,13 @@ public class PetugasHomeActivity extends AppCompatActivity {
                 startActivity(new Intent(context, PetugasBaruActivity.class));
             }
         });
+
+        llDiTolak.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context, PetugasBaruActivity.class)
+                        .putExtra("mode", "tolak"));
+            }
+        });
     }
 }

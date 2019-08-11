@@ -32,7 +32,25 @@ public class DaftarPemohonModel implements Serializable {
             foto_dokumen,
             status,
             disposisi,
-            catatan_disposisi;
+            catatan_disposisi,
+            hasil_telaah,
+            catatan;
+
+    public String getHasil_telaah() {
+        return hasil_telaah;
+    }
+
+    public void setHasil_telaah(String hasil_telaah) {
+        this.hasil_telaah = hasil_telaah;
+    }
+
+    public String getCatatan() {
+        return catatan;
+    }
+
+    public void setCatatan(String catatan) {
+        this.catatan = catatan;
+    }
 
     public String getDisposisi() {
         return disposisi;

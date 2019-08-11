@@ -36,6 +36,7 @@ public class PetugasBaruActivity extends AppCompatActivity {
     private TextView tvKeterangan;
     private List<DaftarPemohonModel> list = new ArrayList<>();
     private Context context = PetugasBaruActivity.this;
+    private String URL_API = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,14 @@ public class PetugasBaruActivity extends AppCompatActivity {
     private void init() {
         rvKonten = findViewById(R.id.rvKonten);
         tvKeterangan = findViewById(R.id.tvKeterangan);
+
+        if (getIntent().hasExtra("mode") &&
+                getIntent().getStringExtra("mode")
+                        .equalsIgnoreCase("tolak")) {
+            URL_API = API.GET_PETUGAS_TOLAK + SharedPreferenceManager.getInstance(context).getUser().getJenis();
+        } else {
+            URL_API = API.GET_PETUGAS_BARU + SharedPreferenceManager.getInstance(context).getUser().getJenis();
+        }
     }
 
     @Override
@@ -64,7 +73,7 @@ public class PetugasBaruActivity extends AppCompatActivity {
         RequestQueue requestQueue;
         requestQueue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(Request.Method.GET,
-                API.GET_PETUGAS_BARU + SharedPreferenceManager.getInstance(context).getUser().getJenis(),
+                URL_API,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

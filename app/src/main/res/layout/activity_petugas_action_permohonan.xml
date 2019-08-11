@@ -104,7 +104,11 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text" />
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:focusedByDefault="false"
+                    android:inputType="text"
+                    tools:targetApi="o" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -184,11 +188,18 @@
                 android:id="@+id/etDisposisiKajari"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Disposisi Kajari">
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:focusedByDefault="false"
+                android:hint="Disposisi Kajari"
+                tools:targetApi="o">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:focusedByDefault="false"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -196,7 +207,7 @@
                 android:id="@+id/etHasilTelaah"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Konsultan Perencanaan">
+                android:hint="Hasil Telaah">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
