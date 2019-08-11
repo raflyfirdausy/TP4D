@@ -1,7 +1,8 @@
-package id.okvi.tp4d.Activity;
+package id.okvi.tp4d.Activity.petugas;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -42,6 +43,7 @@ public class PetugasActionPermohonanActivity extends AppCompatActivity {
     private TextInputLayout etLokasiKegiatan;
     private TextInputLayout etKonsultanPerencanaan;
     private TextInputLayout etDisposisiKajari;
+    private TextInputLayout etCatatanDariKajari;
     private TextInputLayout etHasilTelaah;
     private TextInputLayout etCatatan;
     private Button btnTolak;
@@ -109,6 +111,7 @@ public class PetugasActionPermohonanActivity extends AppCompatActivity {
         etLokasiKegiatan = findViewById(R.id.etLokasiKegiatan);
         etKonsultanPerencanaan = findViewById(R.id.etKonsultanPerencanaan);
         etDisposisiKajari = findViewById(R.id.etDisposisiKajari);
+        etCatatanDariKajari = findViewById(R.id.etCatatanDariKajari);
         etHasilTelaah = findViewById(R.id.etHasilTelaah);
         etCatatan = findViewById(R.id.etCatatan);
         btnTolak = findViewById(R.id.btnTolak);
@@ -126,6 +129,7 @@ public class PetugasActionPermohonanActivity extends AppCompatActivity {
         etLokasiKegiatan.getEditText().setText(daftarPemohonModel.getLokasi_kegiatan());
         etKonsultanPerencanaan.getEditText().setText(daftarPemohonModel.getKonsultan_perencanaan());
         etDisposisiKajari.getEditText().setText(jenisFix);
+        etCatatanDariKajari.getEditText().setText(daftarPemohonModel.getCatatan_disposisi());
 
         btnTolak.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -200,6 +204,10 @@ public class PetugasActionPermohonanActivity extends AppCompatActivity {
                                 JSONObject object = new JSONObject(response);
                                 new Bantuan(context).toastLong(object.getString("result"));
                                 if (object.getInt("status") == 1) {
+                                    Intent intent = new Intent(context, PetugasBaruProgressSelesaiTolakActivity.class);
+                                    intent.putExtra("mode", "baru");
+//                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
                                     finish();
                                 }
                             } catch (JSONException e) {
@@ -273,4 +281,5 @@ public class PetugasActionPermohonanActivity extends AppCompatActivity {
         });
         requestQueue.add(stringRequest);
     }
+
 }

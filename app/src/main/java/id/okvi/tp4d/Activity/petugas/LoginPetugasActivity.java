@@ -1,4 +1,4 @@
-package id.okvi.tp4d.Activity;
+package id.okvi.tp4d.Activity.petugas;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -16,8 +16,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -26,45 +27,36 @@ import java.util.Map;
 
 import id.okvi.tp4d.Helper.API;
 import id.okvi.tp4d.Helper.Bantuan;
+import id.okvi.tp4d.Helper.SharedPreferenceManager;
+import id.okvi.tp4d.Model.UserLoginModel;
 import id.okvi.tp4d.R;
 
-public class PemohonRegistrasiActivity extends AppCompatActivity {
-    TextInputEditText etEmail;
-    TextInputEditText etInstansi;
-    TextInputEditText etPassword;
-    TextInputEditText etKonfirmasiPassword;
-    Button btnDaftar;
-    private Context context = PemohonRegistrasiActivity.this;
+public class LoginPetugasActivity extends AppCompatActivity {
+    private TextInputLayout etEmail;
+    private TextInputLayout etPassword;
+    private Button btnLogin;
+    private Context context = LoginPetugasActivity.this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pemohon_registrasi);
-
+        setContentView(R.layout.activity_login_petugas);
         etEmail = findViewById(R.id.etEmail);
-        etInstansi = findViewById(R.id.etInstansi);
         etPassword = findViewById(R.id.etPassword);
-        etKonfirmasiPassword = findViewById(R.id.etKonfirmasiPassword);
-        btnDaftar = findViewById(R.id.btnDaftar);
+        btnLogin = findViewById(R.id.btnLogin);
 
-        btnDaftar.setOnClickListener(new View.OnClickListener() {
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                prosesDaftar();
+                prosesLogin();
             }
         });
     }
 
-    private void prosesDaftar() {
-        if (TextUtils.isEmpty(etEmail.getText().toString()) ||
-                TextUtils.isEmpty(etEmail.getText().toString()) ||
-                TextUtils.isEmpty(etEmail.getText().toString()) ||
-                TextUtils.isEmpty(etEmail.getText().toString())) {
-            new Bantuan(context).toastLong("Masih ada data yang belum diisi, silahkan dilengkapi terlebih dahulu");
-        } else if (!etPassword.getText().toString().equals(etKonfirmasiPassword.getText().toString())) {
-            new Bantuan(context).alertDialogPeringatan("Konfirmasi Password Salah !");
-        } else if (etPassword.getText().length() < 6) {
-            new Bantuan(context).alertDialogPeringatan("Password minimal 6 karakter !");
+    private void prosesLogin() {
+        if (TextUtils.isEmpty(etEmail.getEditText().getText().toString()) ||
+                TextUtils.isEmpty(etPassword.getEditText().getText().toString())) {
+            new Bantuan(context).toastLong("Masih Ada Data yang kosong !");
         } else {
             final ProgressDialog progressDialog = new ProgressDialog(context);
             progressDialog.setMessage("Loading ...");
@@ -74,20 +66,30 @@ public class PemohonRegistrasiActivity extends AppCompatActivity {
             RequestQueue requestQueue;
             requestQueue = Volley.newRequestQueue(context);
             StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                    API.REGISTER_PEMOHON,
+                    API.LOGIN_PETUGAS,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                             progressDialog.dismiss();
                             try {
                                 JSONObject object = new JSONObject(response);
+                                new Bantuan(context).toastLong(object.getString("result"));
                                 if (object.getInt("status") == 1) {
-                                    new Bantuan(context).toastLong(object.getString("result"));
-                                    Intent intent = new Intent(context, PemohonLoginActivity.class);
+                                    JSONArray jsonArray = object.getJSONArray("result");
+                                    JSONObject jsonObject = jsonArray.getJSONObject(0);
+                                    SharedPreferenceManager.getInstance(context).userLogin(
+                                            new UserLoginModel(
+                                                    jsonObject.getString("id_kajari_petugas"),
+                                                    jsonObject.getString("status"),
+                                                    jsonObject.getString("username"),
+                                                    jsonObject.getString("status"),
+                                                    jsonObject.getString("nip"),
+                                                    jsonObject.getString("nama")
+                                            )
+                                    );
+                                    Intent intent = new Intent(context, PetugasHomeActivity.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
-                                } else {
-                                    new Bantuan(context).alertDialogPeringatan(object.getString("result"));
                                 }
                             } catch (JSONException e) {
                                 new Bantuan(context).alertDialogPeringatan(e.getMessage());
@@ -104,9 +106,8 @@ public class PemohonRegistrasiActivity extends AppCompatActivity {
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> stringMap = new HashMap<>();
-                    stringMap.put("email", etEmail.getText().toString());
-                    stringMap.put("instansi", etInstansi.getText().toString());
-                    stringMap.put("password", etPassword.getText().toString());
+                    stringMap.put("email", etEmail.getEditText().getText().toString());
+                    stringMap.put("password", etPassword.getEditText().getText().toString());
                     return stringMap;
                 }
             };

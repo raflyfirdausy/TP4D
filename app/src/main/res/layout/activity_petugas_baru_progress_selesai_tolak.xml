@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/gray_muda_banget"
     android:orientation="vertical"
-    tools:context=".Activity.PetugasBaruActivity">
+    tools:context=".Activity.petugas.PetugasBaruProgressSelesaiTolakActivity">
 
     <RelativeLayout
         android:id="@+id/header"

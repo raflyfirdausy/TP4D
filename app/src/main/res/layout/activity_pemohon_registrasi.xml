@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
     android:gravity="center"
-    tools:context=".Activity.PemohonRegistrasiActivity">
+    tools:context=".Activity.pemohon.PemohonRegistrasiActivity">
 
     <RelativeLayout
         android:layout_width="340dp"

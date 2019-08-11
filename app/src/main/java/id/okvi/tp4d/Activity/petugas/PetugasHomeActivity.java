@@ -1,4 +1,4 @@
-package id.okvi.tp4d.Activity;
+package id.okvi.tp4d.Activity.petugas;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -71,7 +71,7 @@ public class PetugasHomeActivity extends AppCompatActivity {
         llPermohonan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(context, PetugasBaruActivity.class)
+                startActivity(new Intent(context, PetugasBaruProgressSelesaiTolakActivity.class)
                         .putExtra("mode", "baru"));
             }
         });
@@ -79,15 +79,23 @@ public class PetugasHomeActivity extends AppCompatActivity {
         llProgress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(context, PetugasBaruActivity.class)
+                startActivity(new Intent(context, PetugasBaruProgressSelesaiTolakActivity.class)
                         .putExtra("mode", "progress"));
+            }
+        });
+
+        llSelesai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context, PetugasBaruProgressSelesaiTolakActivity.class)
+                        .putExtra("mode", "selesai"));
             }
         });
 
         llDiTolak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(context, PetugasBaruActivity.class)
+                startActivity(new Intent(context, PetugasBaruProgressSelesaiTolakActivity.class)
                         .putExtra("mode", "tolak"));
             }
         });

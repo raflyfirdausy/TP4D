@@ -1,4 +1,4 @@
-package id.okvi.tp4d.Activity;
+package id.okvi.tp4d.Activity.kajari;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import id.okvi.tp4d.Activity.KajariActionDisposisiActivity;
+import id.okvi.tp4d.Activity.kajari.KajariActionDisposisiActivity;
 import id.okvi.tp4d.Model.DaftarPemohonModel;
 import id.okvi.tp4d.R;
 

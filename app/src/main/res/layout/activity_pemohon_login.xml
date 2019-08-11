@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
     android:gravity="center"
-    tools:context=".Activity.PemohonLoginActivity">
+    tools:context=".Activity.pemohon.PemohonLoginActivity">
 
     <RelativeLayout
         android:layout_width="340dp"

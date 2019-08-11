@@ -1,4 +1,4 @@
-package id.okvi.tp4d.Activity;
+package id.okvi.tp4d.Activity.other;
 
 import android.os.Bundle;
 

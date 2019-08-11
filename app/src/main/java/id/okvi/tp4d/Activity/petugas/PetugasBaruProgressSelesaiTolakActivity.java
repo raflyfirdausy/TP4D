@@ -1,7 +1,8 @@
-package id.okvi.tp4d.Activity;
+package id.okvi.tp4d.Activity.petugas;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -24,24 +25,24 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import id.okvi.tp4d.Adapter.PetugasBaruAdapter;
+import id.okvi.tp4d.Adapter.PetugasAdapter;
 import id.okvi.tp4d.Helper.API;
 import id.okvi.tp4d.Helper.Bantuan;
 import id.okvi.tp4d.Helper.SharedPreferenceManager;
 import id.okvi.tp4d.Model.DaftarPemohonModel;
 import id.okvi.tp4d.R;
 
-public class PetugasBaruActivity extends AppCompatActivity {
+public class PetugasBaruProgressSelesaiTolakActivity extends AppCompatActivity {
     private RecyclerView rvKonten;
     private TextView tvKeterangan;
     private List<DaftarPemohonModel> list = new ArrayList<>();
-    private Context context = PetugasBaruActivity.this;
+    private Context context = PetugasBaruProgressSelesaiTolakActivity.this;
     private String URL_API = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_petugas_baru);
+        setContentView(R.layout.activity_petugas_baru_progress_selesai_tolak);
         init();
     }
 
@@ -57,6 +58,10 @@ public class PetugasBaruActivity extends AppCompatActivity {
                 getIntent().getStringExtra("mode")
                         .equalsIgnoreCase("progress")) {
             URL_API = API.GET_PETUGAS_PROGRESS + SharedPreferenceManager.getInstance(context).getUser().getJenis();
+        } else if (getIntent().hasExtra("mode") &&
+                getIntent().getStringExtra("mode")
+                        .equalsIgnoreCase("selesai")) {
+            URL_API = API.GET_PETUGAS_SELESAI + SharedPreferenceManager.getInstance(context).getUser().getJenis();
         } else {
             URL_API = API.GET_PETUGAS_BARU + SharedPreferenceManager.getInstance(context).getUser().getJenis();
         }
@@ -126,7 +131,7 @@ public class PetugasBaruActivity extends AppCompatActivity {
                                     list.add(daftarPemohonModel);
                                 }
                                 rvKonten.setLayoutManager(new LinearLayoutManager(context, RecyclerView.VERTICAL, false));
-                                rvKonten.setAdapter(new PetugasBaruAdapter(context, list, getIntent().getStringExtra("mode")));
+                                rvKonten.setAdapter(new PetugasAdapter(context, list, getIntent().getStringExtra("mode")));
                             } else {
                                 tvKeterangan.setText(object.getString("result"));
                                 tvKeterangan.setVisibility(View.VISIBLE);
@@ -144,5 +149,12 @@ public class PetugasBaruActivity extends AppCompatActivity {
             }
         });
         requestQueue.add(stringRequest);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(context, PetugasHomeActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 }

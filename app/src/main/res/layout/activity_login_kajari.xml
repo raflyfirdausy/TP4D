@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
     android:gravity="center"
-    tools:context=".Activity.LoginKajariActivity">
+    tools:context=".Activity.kajari.LoginKajariActivity">
 
     <RelativeLayout
         android:layout_width="340dp"

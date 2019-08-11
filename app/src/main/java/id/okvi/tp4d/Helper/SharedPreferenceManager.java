@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
-import id.okvi.tp4d.Activity.SplashScreenActivity;
+import id.okvi.tp4d.Activity.other.SplashScreenActivity;
 import id.okvi.tp4d.Model.UserLoginModel;
 
 public class SharedPreferenceManager {

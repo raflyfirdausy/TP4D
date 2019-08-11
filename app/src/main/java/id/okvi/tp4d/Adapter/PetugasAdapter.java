@@ -15,17 +15,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import id.okvi.tp4d.Activity.PetugasActionPermohonanActivity;
+import id.okvi.tp4d.Activity.petugas.PetugasActionPermohonanActivity;
 import id.okvi.tp4d.Model.DaftarPemohonModel;
 import id.okvi.tp4d.R;
 
-public class PetugasBaruAdapter extends RecyclerView.Adapter<PetugasBaruAdapter.ViewHolder> {
+public class PetugasAdapter extends RecyclerView.Adapter<PetugasAdapter.ViewHolder> {
 
     private Context context;
     private List<DaftarPemohonModel> list;
     private String mode = "baru";
 
-    public PetugasBaruAdapter(Context context, List<DaftarPemohonModel> list, String mode) {
+    public PetugasAdapter(Context context, List<DaftarPemohonModel> list, String mode) {
         this.context = context;
         this.list = list;
         this.mode = mode;

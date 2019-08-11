@@ -15,27 +15,27 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="m">
-        <activity android:name=".Activity.PetugasActionPermohonanActivity"></activity>
-        <activity android:name=".Activity.PetugasBaruActivity" />
-        <activity android:name=".Activity.KajariActionDisposisiActivity" />
-        <activity android:name=".Activity.KajariBaruActivity" />
-        <activity android:name=".Activity.PetugasHomeActivity" />
-        <activity android:name=".Activity.KajariHomeActivity" />
-        <activity android:name=".Activity.LoginPetugasActivity" />
-        <activity android:name=".Activity.LoginKajariActivity" />
-        <activity android:name=".Activity.PilihLoginPetugasActivity" />
-        <activity android:name=".Activity.VerifikasiActivity" />
-        <activity android:name=".Activity.PermohonanBaruDetailActivity" />
-        <activity android:name=".Activity.PermohonanBaruActivity" />
-        <activity android:name=".Activity.PemohonHomeActivity" />
+        <activity android:name=".Activity.petugas.PetugasActionPermohonanActivity"></activity>
+        <activity android:name=".Activity.petugas.PetugasBaruProgressSelesaiTolakActivity" />
+        <activity android:name=".Activity.kajari.KajariActionDisposisiActivity" />
+        <activity android:name=".Activity.kajari.KajariBaruActivity" />
+        <activity android:name=".Activity.petugas.PetugasHomeActivity" />
+        <activity android:name=".Activity.kajari.KajariHomeActivity" />
+        <activity android:name=".Activity.petugas.LoginPetugasActivity" />
+        <activity android:name=".Activity.kajari.LoginKajariActivity" />
+        <activity android:name=".Activity.petugas.PilihLoginPetugasActivity" />
+        <activity android:name=".Activity.other.VerifikasiActivity" />
+        <activity android:name=".Activity.pemohon.PermohonanBaruDetailActivity" />
+        <activity android:name=".Activity.pemohon.PermohonanBaruActivity" />
+        <activity android:name=".Activity.pemohon.PemohonHomeActivity" />
         <activity
-            android:name=".Activity.PemohonRegistrasiActivity"
+            android:name=".Activity.pemohon.PemohonRegistrasiActivity"
             tools:ignore="InnerclassSeparator" />
         <activity
-            android:name=".Activity.PemohonLoginActivity"
+            android:name=".Activity.pemohon.PemohonLoginActivity"
             tools:ignore="InnerclassSeparator" />
         <activity
-            android:name=".Activity.SplashScreenActivity"
+            android:name=".Activity.other.SplashScreenActivity"
             tools:ignore="InnerclassSeparator">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,7 +44,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activity.MainActivity"
+            android:name=".Activity.other.MainActivity"
             tools:ignore="InnerclassSeparator" />
     </application>
 

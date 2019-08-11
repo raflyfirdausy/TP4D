@@ -1,4 +1,4 @@
-package id.okvi.tp4d.Activity;
+package id.okvi.tp4d.Activity.other;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +7,10 @@ import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import id.okvi.tp4d.Activity.kajari.KajariHomeActivity;
+import id.okvi.tp4d.Activity.pemohon.PemohonHomeActivity;
+import id.okvi.tp4d.Activity.pemohon.PemohonLoginActivity;
+import id.okvi.tp4d.Activity.petugas.PetugasHomeActivity;
 import id.okvi.tp4d.Helper.SharedPreferenceManager;
 import id.okvi.tp4d.R;
 

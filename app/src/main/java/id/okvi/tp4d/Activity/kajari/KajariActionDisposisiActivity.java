@@ -1,4 +1,4 @@
-package id.okvi.tp4d.Activity;
+package id.okvi.tp4d.Activity.kajari;
 
 import android.app.ProgressDialog;
 import android.content.Context;

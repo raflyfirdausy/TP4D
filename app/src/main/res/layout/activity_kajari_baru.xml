@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/gray_muda_banget"
-    tools:context=".Activity.KajariBaruActivity">
+    tools:context=".Activity.kajari.KajariBaruActivity">
 
     <RelativeLayout
         android:id="@+id/header"
