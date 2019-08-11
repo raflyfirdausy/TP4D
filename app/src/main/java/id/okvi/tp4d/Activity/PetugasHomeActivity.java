@@ -71,7 +71,16 @@ public class PetugasHomeActivity extends AppCompatActivity {
         llPermohonan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(context, PetugasBaruActivity.class));
+                startActivity(new Intent(context, PetugasBaruActivity.class)
+                        .putExtra("mode", "baru"));
+            }
+        });
+
+        llProgress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context, PetugasBaruActivity.class)
+                        .putExtra("mode", "progress"));
             }
         });
 

@@ -54,6 +54,29 @@ public class PetugasActionPermohonanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_petugas_action_permohonan);
         init();
+
+        if (getIntent().getStringExtra("mode").equalsIgnoreCase("tolak")) {
+            setModeTolak();
+        }
+    }
+
+    private void setModeTolak() {
+        etInstansiPemohon.getEditText().setEnabled(false);
+        etAlamatInstansi.getEditText().setEnabled(false);
+        etNomorSurat.getEditText().setEnabled(false);
+        etTanggalSurat.getEditText().setEnabled(false);
+        etJenisKegiatan.getEditText().setEnabled(false);
+        etPaguAnggaran.getEditText().setEnabled(false);
+        etTahunAnggaran.getEditText().setEnabled(false);
+        etCaraPelaksanaan.getEditText().setEnabled(false);
+        etMetodePembayaran.getEditText().setEnabled(false);
+        etLokasiKegiatan.getEditText().setEnabled(false);
+        etKonsultanPerencanaan.getEditText().setEnabled(false);
+        etDisposisiKajari.getEditText().setEnabled(false);
+        etHasilTelaah.getEditText().setEnabled(false);
+        etCatatan.getEditText().setEnabled(false);
+        btnTolak.setVisibility(View.GONE);
+        btnTerima.setVisibility(View.GONE);
     }
 
     private void init() {

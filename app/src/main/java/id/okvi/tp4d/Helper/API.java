@@ -15,4 +15,5 @@ public class API {
     public final static String PETUGAS_TOLAK_PERMOHONAN = HOST_ROOT + "petugas_tolak_permohonan.php?id_daftar_pemohon=";
     public final static String PETUGAS_TERIMA_PERMOHONAN = HOST_ROOT + "petugas_terima_permohonan.php";
     public final static String GET_PETUGAS_TOLAK = HOST_ROOT + "get_petugas_tolak.php?disposisi=";
+    public final static String GET_PETUGAS_PROGRESS = HOST_ROOT + "get_petugas_progress.php?disposisi=";
 }

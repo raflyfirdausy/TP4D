@@ -53,6 +53,10 @@ public class PetugasBaruActivity extends AppCompatActivity {
                 getIntent().getStringExtra("mode")
                         .equalsIgnoreCase("tolak")) {
             URL_API = API.GET_PETUGAS_TOLAK + SharedPreferenceManager.getInstance(context).getUser().getJenis();
+        } else if (getIntent().hasExtra("mode") &&
+                getIntent().getStringExtra("mode")
+                        .equalsIgnoreCase("progress")) {
+            URL_API = API.GET_PETUGAS_PROGRESS + SharedPreferenceManager.getInstance(context).getUser().getJenis();
         } else {
             URL_API = API.GET_PETUGAS_BARU + SharedPreferenceManager.getInstance(context).getUser().getJenis();
         }
@@ -122,7 +126,7 @@ public class PetugasBaruActivity extends AppCompatActivity {
                                     list.add(daftarPemohonModel);
                                 }
                                 rvKonten.setLayoutManager(new LinearLayoutManager(context, RecyclerView.VERTICAL, false));
-                                rvKonten.setAdapter(new PetugasBaruAdapter(context, list));
+                                rvKonten.setAdapter(new PetugasBaruAdapter(context, list, getIntent().getStringExtra("mode")));
                             } else {
                                 tvKeterangan.setText(object.getString("result"));
                                 tvKeterangan.setVisibility(View.VISIBLE);

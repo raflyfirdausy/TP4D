@@ -1,5 +1,6 @@
 package id.okvi.tp4d.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,10 +23,12 @@ public class PetugasBaruAdapter extends RecyclerView.Adapter<PetugasBaruAdapter.
 
     private Context context;
     private List<DaftarPemohonModel> list;
+    private String mode = "baru";
 
-    public PetugasBaruAdapter(Context context, List<DaftarPemohonModel> list) {
+    public PetugasBaruAdapter(Context context, List<DaftarPemohonModel> list, String mode) {
         this.context = context;
         this.list = list;
+        this.mode = mode;
     }
 
     @NonNull
@@ -35,14 +38,15 @@ public class PetugasBaruAdapter extends RecyclerView.Adapter<PetugasBaruAdapter.
         return new ViewHolder(itemView);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.tvNomerSurat.setText(list.get(position).getNomer_surat());
         holder.tvTanggal.setText(list.get(position).getTanggal_surat());
-        holder.tvInstansiPemohon.setText(list.get(position).getInstansi_pemohon());
-        holder.tvJenisKegiatan.setText(list.get(position).getJenis_kegiatan());
-        holder.tvPaguAnggaran.setText(list.get(position).getPagu_anggaran());
-        holder.tvTahun.setText(list.get(position).getTahun_anggaran());
+        holder.tvInstansiPemohon.setText("Instansi Pemohon : " + list.get(position).getInstansi_pemohon());
+        holder.tvJenisKegiatan.setText("Jenis Kegiatan : " + list.get(position).getJenis_kegiatan());
+        holder.tvPaguAnggaran.setText("Pagu Anggaran : " + list.get(position).getPagu_anggaran());
+        holder.tvTahun.setText("Tahun : " + list.get(position).getTahun_anggaran());
 
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +55,7 @@ public class PetugasBaruAdapter extends RecyclerView.Adapter<PetugasBaruAdapter.
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("data", list.get(position));
                 intent.putExtras(bundle);
+                intent.putExtra("mode", mode);
                 context.startActivity(intent);
             }
         });
