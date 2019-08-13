@@ -15,7 +15,8 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="m">
-        <activity android:name=".Activity.petugas.PetugasActionPermohonanActivity"></activity>
+        <activity android:name=".Activity.kajari.KajariActionLanjutanActivity"></activity>
+        <activity android:name=".Activity.petugas.PetugasActionPermohonanActivity" />
         <activity android:name=".Activity.petugas.PetugasBaruProgressSelesaiTolakActivity" />
         <activity android:name=".Activity.kajari.KajariActionDisposisiActivity" />
         <activity android:name=".Activity.kajari.KajariBaruActivity" />
