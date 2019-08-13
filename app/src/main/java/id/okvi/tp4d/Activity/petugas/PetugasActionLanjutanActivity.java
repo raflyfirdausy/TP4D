@@ -1,4 +1,4 @@
-package id.okvi.tp4d.Activity.kajari;
+package id.okvi.tp4d.Activity.petugas;
 
 import android.os.Bundle;
 
@@ -6,11 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import id.okvi.tp4d.R;
 
-public class KajariActionLanjutanActivity extends AppCompatActivity {
+public class PetugasActionLanjutanActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_kajari_action_lanjutan);
+        setContentView(R.layout.activity_petugas_action_lanjutan);
     }
 }
