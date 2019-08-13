@@ -59,7 +59,13 @@ public class PetugasActionPermohonanActivity extends AppCompatActivity {
 
         if (getIntent().getStringExtra("mode").equalsIgnoreCase("tolak")) {
             setModeTolak();
+        } else if (getIntent().getStringExtra("mode").equalsIgnoreCase("progress")) {
+            setModeProgress();
         }
+    }
+
+    private void setModeProgress() {
+
     }
 
     private void setModeTolak() {

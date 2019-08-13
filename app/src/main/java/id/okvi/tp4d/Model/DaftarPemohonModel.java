@@ -23,9 +23,13 @@ public class DaftarPemohonModel implements Serializable {
             awal_pekerjaan,
             akhir_pekerjaan,
             uitzet_perencanaan,
+            p_uitzet_perencanaan,
             pcm_persiapan,
+            p_pcm_persiapan,
             mc_pelaksanaan,
+            p_mc_pelaksanaan,
             pho_penyerahan_hasil,
+            p_pho_penyerahan_hasil,
             nama_pegawai_pemohon,
             nomor_hp,
             email,
@@ -34,7 +38,183 @@ public class DaftarPemohonModel implements Serializable {
             disposisi,
             catatan_disposisi,
             hasil_telaah,
-            catatan;
+            catatan,
+            nomor_sprint,
+            tanggal_sprint,
+            anggota1,
+            nik1,
+            anggota2,
+            nik2,
+            anggota3,
+            nik3,
+            anggota4,
+            nik4,
+            anggota5,
+            nik5,
+            anggota6,
+            nik6,
+            share_lokasi,
+            serah_terima;
+
+    public String getP_uitzet_perencanaan() {
+        return p_uitzet_perencanaan;
+    }
+
+    public void setP_uitzet_perencanaan(String p_uitzet_perencanaan) {
+        this.p_uitzet_perencanaan = p_uitzet_perencanaan;
+    }
+
+    public String getP_pcm_persiapan() {
+        return p_pcm_persiapan;
+    }
+
+    public void setP_pcm_persiapan(String p_pcm_persiapan) {
+        this.p_pcm_persiapan = p_pcm_persiapan;
+    }
+
+    public String getP_mc_pelaksanaan() {
+        return p_mc_pelaksanaan;
+    }
+
+    public void setP_mc_pelaksanaan(String p_mc_pelaksanaan) {
+        this.p_mc_pelaksanaan = p_mc_pelaksanaan;
+    }
+
+    public String getP_pho_penyerahan_hasil() {
+        return p_pho_penyerahan_hasil;
+    }
+
+    public void setP_pho_penyerahan_hasil(String p_pho_penyerahan_hasil) {
+        this.p_pho_penyerahan_hasil = p_pho_penyerahan_hasil;
+    }
+
+    public String getNomor_sprint() {
+        return nomor_sprint;
+    }
+
+    public void setNomor_sprint(String nomor_sprint) {
+        this.nomor_sprint = nomor_sprint;
+    }
+
+    public String getTanggal_sprint() {
+        return tanggal_sprint;
+    }
+
+    public void setTanggal_sprint(String tanggal_sprint) {
+        this.tanggal_sprint = tanggal_sprint;
+    }
+
+    public String getAnggota1() {
+        return anggota1;
+    }
+
+    public void setAnggota1(String anggota1) {
+        this.anggota1 = anggota1;
+    }
+
+    public String getNik1() {
+        return nik1;
+    }
+
+    public void setNik1(String nik1) {
+        this.nik1 = nik1;
+    }
+
+    public String getAnggota2() {
+        return anggota2;
+    }
+
+    public void setAnggota2(String anggota2) {
+        this.anggota2 = anggota2;
+    }
+
+    public String getNik2() {
+        return nik2;
+    }
+
+    public void setNik2(String nik2) {
+        this.nik2 = nik2;
+    }
+
+    public String getAnggota3() {
+        return anggota3;
+    }
+
+    public void setAnggota3(String anggota3) {
+        this.anggota3 = anggota3;
+    }
+
+    public String getNik3() {
+        return nik3;
+    }
+
+    public void setNik3(String nik3) {
+        this.nik3 = nik3;
+    }
+
+    public String getAnggota4() {
+        return anggota4;
+    }
+
+    public void setAnggota4(String anggota4) {
+        this.anggota4 = anggota4;
+    }
+
+    public String getNik4() {
+        return nik4;
+    }
+
+    public void setNik4(String nik4) {
+        this.nik4 = nik4;
+    }
+
+    public String getAnggota5() {
+        return anggota5;
+    }
+
+    public void setAnggota5(String anggota5) {
+        this.anggota5 = anggota5;
+    }
+
+    public String getNik5() {
+        return nik5;
+    }
+
+    public void setNik5(String nik5) {
+        this.nik5 = nik5;
+    }
+
+    public String getAnggota6() {
+        return anggota6;
+    }
+
+    public void setAnggota6(String anggota6) {
+        this.anggota6 = anggota6;
+    }
+
+    public String getNik6() {
+        return nik6;
+    }
+
+    public void setNik6(String nik6) {
+        this.nik6 = nik6;
+    }
+
+    public String getShare_lokasi() {
+        return share_lokasi;
+    }
+
+    public void setShare_lokasi(String share_lokasi) {
+        this.share_lokasi = share_lokasi;
+    }
+
+    public String getSerah_terima() {
+        return serah_terima;
+    }
+
+    public void setSerah_terima(String serah_terima) {
+        this.serah_terima = serah_terima;
+    }
 
     public String getHasil_telaah() {
         return hasil_telaah;
