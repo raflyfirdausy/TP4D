@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import id.okvi.tp4d.R;
 
-public class PetugasActionLanjutanActivity extends AppCompatActivity {
+public class PetugasActionProsesLanjutanActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -70,10 +70,10 @@ public class PetugasBaruProgressSelesaiTolakActivity extends AppCompatActivity {
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        getDataPetugasBaru();
+        getData();
     }
 
-    private void getDataPetugasBaru() {
+    private void getData() {
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Loading ...");
         progressDialog.setIndeterminate(true);
@@ -127,6 +127,9 @@ public class PetugasBaruProgressSelesaiTolakActivity extends AppCompatActivity {
                                     daftarPemohonModel.setStatus(jsonObject.getString("status"));
                                     daftarPemohonModel.setDisposisi(jsonObject.getString("disposisi"));
                                     daftarPemohonModel.setCatatan_disposisi(jsonObject.getString("catatan_disposisi"));
+                                    daftarPemohonModel.setHasil_telaah(jsonObject.getString("hasil_telaah"));
+                                    daftarPemohonModel.setCatatan(jsonObject.getString("catatan"));
+                                    daftarPemohonModel.setCatatan(jsonObject.getString("catatan"));
 
                                     list.add(daftarPemohonModel);
                                 }

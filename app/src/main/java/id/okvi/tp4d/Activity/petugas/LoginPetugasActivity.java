@@ -73,7 +73,7 @@ public class LoginPetugasActivity extends AppCompatActivity {
                             progressDialog.dismiss();
                             try {
                                 JSONObject object = new JSONObject(response);
-                                new Bantuan(context).toastLong(object.getString("result"));
+//                                new Bantuan(context).toastLong(object.getString("result"));
                                 if (object.getInt("status") == 1) {
                                     JSONArray jsonArray = object.getJSONArray("result");
                                     JSONObject jsonObject = jsonArray.getJSONObject(0);

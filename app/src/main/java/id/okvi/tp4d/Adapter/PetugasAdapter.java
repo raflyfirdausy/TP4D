@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import id.okvi.tp4d.Activity.petugas.PetugasActionPermohonanActivity;
+import id.okvi.tp4d.Activity.petugas.PetugasActionProsesAwalActivity;
 import id.okvi.tp4d.Model.DaftarPemohonModel;
 import id.okvi.tp4d.R;
 
@@ -48,17 +49,32 @@ public class PetugasAdapter extends RecyclerView.Adapter<PetugasAdapter.ViewHold
         holder.tvPaguAnggaran.setText("Pagu Anggaran : " + list.get(position).getPagu_anggaran());
         holder.tvTahun.setText("Tahun : " + list.get(position).getTahun_anggaran());
 
-        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, PetugasActionPermohonanActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("data", list.get(position));
-                intent.putExtras(bundle);
-                intent.putExtra("mode", mode);
-                context.startActivity(intent);
-            }
-        });
+        if (this.mode.equalsIgnoreCase("baru")) {
+            holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, PetugasActionPermohonanActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("data", list.get(position));
+                    intent.putExtras(bundle);
+                    intent.putExtra("mode", mode);
+                    context.startActivity(intent);
+                }
+            });
+        } else if (this.mode.equalsIgnoreCase("progress")) {
+            holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, PetugasActionProsesAwalActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("data", list.get(position));
+                    intent.putExtras(bundle);
+                    intent.putExtra("mode", mode);
+                    context.startActivity(intent);
+                }
+            });
+        }
+
     }
 
     @Override
