@@ -123,6 +123,8 @@ public class PetugasActionProsesAwalActivity extends AppCompatActivity {
                 getTanggal("etTanggalSurat");
             }
         });
+
+        getAndSetData();
     }
 
     private void getTanggal(final String jenis) {
@@ -147,29 +149,7 @@ public class PetugasActionProsesAwalActivity extends AppCompatActivity {
         datePickerDialog.show();
     }
 
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        getAndSetData();
-    }
-
     private void update() {
-
-        etInstansiPemohon = findViewById(R.id.etInstansiPemohon);
-        etAlamatInstansi = findViewById(R.id.etAlamatInstansi);
-        etNomorSurat = findViewById(R.id.etNomorSurat);
-        etTanggalSurat = findViewById(R.id.etTanggalSurat);
-        etTanggalPengajuan = findViewById(R.id.etTanggalPengajuan);
-        etJenisKegiatan = findViewById(R.id.etJenisKegiatan);
-        etPaguAnggaran = findViewById(R.id.etPaguAnggaran);
-        etTahunAnggaran = findViewById(R.id.etTahunAnggaran);
-        etCaraPelaksanaan = findViewById(R.id.etCaraPelaksanaan);
-        etMetodePembayaran = findViewById(R.id.etMetodePembayaran);
-        etLokasiKegiatan = findViewById(R.id.etLokasiKegiatan);
-        etKonsultanPerencanaan = findViewById(R.id.etKonsultanPerencanaan);
-        etNomorSprintTelaah = findViewById(R.id.etNomorSprintTelaah);
-        etTanggalSprintTelaah = findViewById(R.id.etTanggalSprintTelaah);
-        etHasilTelaah = findViewById(R.id.etHasilTelaah);
 
         if (TextUtils.isEmpty(etInstansiPemohon.getEditText().getText().toString())) {
             etInstansiPemohon.getEditText().setError("Harus diisi");
@@ -237,14 +217,12 @@ public class PetugasActionProsesAwalActivity extends AppCompatActivity {
                         progressDialog.dismiss();
                         try {
                             JSONObject object = new JSONObject(response);
-                            new Bantuan(context).toastLong(object.getString("result"));
                             if (object.getInt("status") == 1) {
-                                new Bantuan(context).toastLong("Berhasil Update");
-                                Intent intent = new Intent(context, PetugasActionProsesLanjutanActivity.class);
-                                intent.putExtra("data", list.get(0));
-                                startActivity(intent);
-                                finish();
+                                new Bantuan(context).toastLong(object.getString("result"));
                             }
+                            Intent intent = new Intent(context, PetugasActionProsesLanjutanActivity.class);
+                            intent.putExtra("data", list.get(0));
+                            startActivity(intent);
                         } catch (JSONException e) {
                             new Bantuan(context).toastLong(e.getMessage());
                             e.printStackTrace();
@@ -260,7 +238,7 @@ public class PetugasActionProsesAwalActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> stringMap = new HashMap<>();
-                stringMap.put("id_daftar_pemohon", daftarPemohonModel.getId_daftar_pemohon());
+                stringMap.put("id_daftar_pemohon", list.get(0).getId_daftar_pemohon());
                 stringMap.put("instansi_pemohon", etInstansiPemohon.getEditText().getText().toString());
                 stringMap.put("alamat_instansi", etAlamatInstansi.getEditText().getText().toString());
                 stringMap.put("nomer_surat", etNomorSurat.getEditText().getText().toString());
@@ -273,7 +251,7 @@ public class PetugasActionProsesAwalActivity extends AppCompatActivity {
                 stringMap.put("metode_pembayaran", etMetodePembayaran.getEditText().getText().toString());
                 stringMap.put("lokasi_kegiatan", etLokasiKegiatan.getEditText().getText().toString());
                 stringMap.put("konsultan_perencanaan", etKonsultanPerencanaan.getEditText().getText().toString());
-                stringMap.put("nomor_sprint", etNomorSurat.getEditText().getText().toString());
+                stringMap.put("nomor_sprint", etNomorSprintTelaah.getEditText().getText().toString());
                 stringMap.put("tanggal_sprint", etTanggalSprintTelaah.getEditText().getText().toString());
                 stringMap.put("hasil_telaah", etHasilTelaah.getEditText().getText().toString());
                 return stringMap;
@@ -337,6 +315,8 @@ public class PetugasActionProsesAwalActivity extends AppCompatActivity {
                                     daftarPemohonModel.setCatatan_disposisi(jsonObject.getString("catatan_disposisi"));
                                     daftarPemohonModel.setHasil_telaah(jsonObject.getString("hasil_telaah"));
                                     daftarPemohonModel.setCatatan(jsonObject.getString("catatan"));
+                                    daftarPemohonModel.setNomor_sprint(jsonObject.getString("nomor_sprint"));
+                                    daftarPemohonModel.setTanggal_sprint(jsonObject.getString("tanggal_sprint"));
 
                                     list.add(daftarPemohonModel);
                                 }

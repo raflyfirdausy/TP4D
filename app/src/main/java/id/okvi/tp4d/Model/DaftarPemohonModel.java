@@ -41,6 +41,8 @@ public class DaftarPemohonModel implements Serializable {
             catatan,
             nomor_sprint,
             tanggal_sprint,
+            nomor_sprint_pendampingan,
+            tanggal_sprint_pendampingan,
             anggota1,
             nik1,
             anggota2,
@@ -55,6 +57,22 @@ public class DaftarPemohonModel implements Serializable {
             nik6,
             share_lokasi,
             serah_terima;
+
+    public String getNomor_sprint_pendampingan() {
+        return nomor_sprint_pendampingan;
+    }
+
+    public void setNomor_sprint_pendampingan(String nomor_sprint_pendampingan) {
+        this.nomor_sprint_pendampingan = nomor_sprint_pendampingan;
+    }
+
+    public String getTanggal_sprint_pendampingan() {
+        return tanggal_sprint_pendampingan;
+    }
+
+    public void setTanggal_sprint_pendampingan(String tanggal_sprint_pendampingan) {
+        this.tanggal_sprint_pendampingan = tanggal_sprint_pendampingan;
+    }
 
     public String getP_uitzet_perencanaan() {
         return p_uitzet_perencanaan;
