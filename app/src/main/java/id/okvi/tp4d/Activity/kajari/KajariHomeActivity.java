@@ -54,7 +54,32 @@ public class KajariHomeActivity extends AppCompatActivity {
         llPermohonan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(context, KajariBaruActivity.class));
+                startActivity(new Intent(context, KajariBaruProgressSelesaiTolakActivity.class)
+                        .putExtra("mode", "baru"));
+            }
+        });
+
+        llProgress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context, KajariBaruProgressSelesaiTolakActivity.class)
+                        .putExtra("mode", "progress"));
+            }
+        });
+
+        llSelesai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context, KajariBaruProgressSelesaiTolakActivity.class)
+                        .putExtra("mode", "selesai"));
+            }
+        });
+
+        llDiTolak.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context, KajariBaruProgressSelesaiTolakActivity.class)
+                        .putExtra("mode", "tolak"));
             }
         });
     }

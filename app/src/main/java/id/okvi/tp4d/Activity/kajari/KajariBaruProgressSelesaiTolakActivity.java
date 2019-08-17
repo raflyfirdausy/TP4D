@@ -30,11 +30,12 @@ import id.okvi.tp4d.Helper.Bantuan;
 import id.okvi.tp4d.Model.DaftarPemohonModel;
 import id.okvi.tp4d.R;
 
-public class KajariBaruActivity extends AppCompatActivity {
+public class KajariBaruProgressSelesaiTolakActivity extends AppCompatActivity {
     private RecyclerView rvKonten;
     private TextView tvKeterangan;
     private List<DaftarPemohonModel> list = new ArrayList<>();
-    private Context context = KajariBaruActivity.this;
+    private Context context = KajariBaruProgressSelesaiTolakActivity.this;
+    private String URL_API = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,24 @@ public class KajariBaruActivity extends AppCompatActivity {
     private void init() {
         rvKonten = findViewById(R.id.rvKonten);
         tvKeterangan = findViewById(R.id.tvKeterangan);
+
+        if (getIntent().hasExtra("mode")) {
+            if (getIntent().getStringExtra("mode")
+                    .equalsIgnoreCase("baru")) {
+                URL_API = API.GET_KAJARI_BARU;
+            } else if (getIntent().getStringExtra("mode")
+                    .equalsIgnoreCase("progress")) {
+                URL_API = API.GET_KAJARI_PROGRESS;
+            } else if (getIntent().getStringExtra("mode")
+                    .equalsIgnoreCase("selesai")) {
+                URL_API = API.GET_KAJARI_SELESAI;
+            } else if (getIntent().getStringExtra("mode")
+                    .equalsIgnoreCase("tolak")) {
+                URL_API = API.GET_KAJARI_TOLAK;
+            }
+        } else {
+            finish();
+        }
     }
 
     @Override
@@ -63,7 +82,7 @@ public class KajariBaruActivity extends AppCompatActivity {
         RequestQueue requestQueue;
         requestQueue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(Request.Method.GET,
-                API.GET_KAJARI_BARU,
+                URL_API,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

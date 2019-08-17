@@ -353,7 +353,7 @@
                                     android:fontFamily="monospace"
                                     android:paddingStart="10dp"
                                     android:paddingLeft="10dp"
-                                    android:text="Lihat Permohonan yang telah selesai"
+                                    android:text="Lihat Permohonan yang di tolak petugas"
                                     android:textColor="@color/black"
                                     android:textSize="15sp"
                                     tools:ignore="RtlSymmetry" />

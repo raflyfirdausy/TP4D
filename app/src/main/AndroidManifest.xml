@@ -20,7 +20,7 @@
         <activity android:name=".Activity.petugas.PetugasActionPermohonanActivity" />
         <activity android:name=".Activity.petugas.PetugasBaruProgressSelesaiTolakActivity" />
         <activity android:name=".Activity.kajari.KajariActionDisposisiActivity" />
-        <activity android:name=".Activity.kajari.KajariBaruActivity" />
+        <activity android:name=".Activity.kajari.KajariBaruProgressSelesaiTolakActivity" />
         <activity android:name=".Activity.petugas.PetugasHomeActivity" />
         <activity android:name=".Activity.kajari.KajariHomeActivity" />
         <activity android:name=".Activity.petugas.LoginPetugasActivity" />

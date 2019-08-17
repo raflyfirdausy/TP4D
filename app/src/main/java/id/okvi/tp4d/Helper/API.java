@@ -21,4 +21,7 @@ public class API {
     public final static String UPLOAD_DOKUMEN = HOST_ROOT + "upload_dokumen.php";
     public final static String GET_FOTO_DOKUMENTASI = HOST_ROOT + "get_foto_dokumentasi.php?id_daftar_pemohon=";
     public final static String UPDATE_PROSES_LANJUTAN = HOST_ROOT + "update_proses_lanjutan.php";
+    public final static String GET_KAJARI_PROGRESS = HOST_ROOT + "get_kajari_progress.php";
+    public final static String GET_KAJARI_SELESAI = HOST_ROOT + "get_kajari_selesai.php";
+    public final static String GET_KAJARI_TOLAK = HOST_ROOT + "get_kajari_tolak.php";
 }
