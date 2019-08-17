@@ -317,6 +317,25 @@ public class PetugasActionProsesAwalActivity extends AppCompatActivity {
                                     daftarPemohonModel.setCatatan(jsonObject.getString("catatan"));
                                     daftarPemohonModel.setNomor_sprint(jsonObject.getString("nomor_sprint"));
                                     daftarPemohonModel.setTanggal_sprint(jsonObject.getString("tanggal_sprint"));
+                                    daftarPemohonModel.setNomor_sprint_pendampingan(jsonObject.getString("nomor_sprint_pendampingan"));
+                                    daftarPemohonModel.setTanggal_sprint(jsonObject.getString("tanggal_sprint_pendampingan"));
+                                    daftarPemohonModel.setAnggota1(jsonObject.getString("anggota1"));
+                                    daftarPemohonModel.setAnggota2(jsonObject.getString("anggota2"));
+                                    daftarPemohonModel.setAnggota3(jsonObject.getString("anggota3"));
+                                    daftarPemohonModel.setAnggota4(jsonObject.getString("anggota4"));
+                                    daftarPemohonModel.setAnggota5(jsonObject.getString("anggota5"));
+                                    daftarPemohonModel.setAnggota6(jsonObject.getString("anggota6"));
+                                    daftarPemohonModel.setNik1(jsonObject.getString("nik1"));
+                                    daftarPemohonModel.setNik2(jsonObject.getString("nik2"));
+                                    daftarPemohonModel.setNik3(jsonObject.getString("nik3"));
+                                    daftarPemohonModel.setNik4(jsonObject.getString("nik4"));
+                                    daftarPemohonModel.setNik5(jsonObject.getString("nik5"));
+                                    daftarPemohonModel.setNik6(jsonObject.getString("nik6"));
+                                    daftarPemohonModel.setP_uitzet_perencanaan(jsonObject.getString("p_uitzet_perencanaan"));
+                                    daftarPemohonModel.setP_pcm_persiapan(jsonObject.getString("p_pcm_persiapan"));
+                                    daftarPemohonModel.setP_mc_pelaksanaan(jsonObject.getString("p_mc_pelaksanaan"));
+                                    daftarPemohonModel.setP_pho_penyerahan_hasil(jsonObject.getString("p_pho_penyerahan_hasil"));
+                                    daftarPemohonModel.setShare_lokasi(jsonObject.getString("share_lokasi"));
 
                                     list.add(daftarPemohonModel);
                                 }
