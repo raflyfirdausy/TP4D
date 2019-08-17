@@ -12,7 +12,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import id.okvi.tp4d.Activity.kajari.KajariActionDisposisiActivity;
 import id.okvi.tp4d.Model.DaftarPemohonModel;
@@ -22,10 +24,13 @@ public class KajariBaruAdapter extends RecyclerView.Adapter<KajariBaruAdapter.Vi
 
     private Context context;
     private List<DaftarPemohonModel> list;
+    private List<DaftarPemohonModel> list_sementara;
 
     public KajariBaruAdapter(Context context, List<DaftarPemohonModel> list) {
         this.context = context;
         this.list = list;
+        this.list_sementara = new ArrayList<>();
+        this.list_sementara.addAll(list);
     }
 
     @NonNull
@@ -56,6 +61,21 @@ public class KajariBaruAdapter extends RecyclerView.Adapter<KajariBaruAdapter.Vi
             }
         });
 
+    }
+
+    public void cariData(String text) {
+        text = text.toLowerCase(Locale.getDefault());
+        list.clear();
+        if (text.length() == 0) {
+            list.addAll(list_sementara);
+        } else {
+            for (int i = 0; i < list_sementara.size(); i++) {
+                if (list_sementara.get(i).getNo_regis().toLowerCase(Locale.getDefault()).contains(text)) {
+                    list.add(list_sementara.get(i));
+                }
+            }
+        }
+        notifyDataSetChanged();
     }
 
     @Override

@@ -13,7 +13,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import id.okvi.tp4d.Activity.petugas.PetugasActionPermohonanActivity;
 import id.okvi.tp4d.Activity.petugas.PetugasActionProsesAwalActivity;
@@ -24,12 +26,15 @@ public class PetugasAdapter extends RecyclerView.Adapter<PetugasAdapter.ViewHold
 
     private Context context;
     private List<DaftarPemohonModel> list;
+    private List<DaftarPemohonModel> list_sementara;
     private String mode = "baru";
 
     public PetugasAdapter(Context context, List<DaftarPemohonModel> list, String mode) {
         this.context = context;
         this.list = list;
         this.mode = mode;
+        this.list_sementara = new ArrayList<>();
+        this.list_sementara.addAll(list);
     }
 
     @NonNull
@@ -48,6 +53,7 @@ public class PetugasAdapter extends RecyclerView.Adapter<PetugasAdapter.ViewHold
         holder.tvJenisKegiatan.setText("Jenis Kegiatan : " + list.get(position).getJenis_kegiatan());
         holder.tvPaguAnggaran.setText("Pagu Anggaran : " + list.get(position).getPagu_anggaran());
         holder.tvTahun.setText("Tahun : " + list.get(position).getTahun_anggaran());
+        holder.tvNomerRegistrasi.setText("No Registrasi : " + list.get(position).getNo_regis());
 
         if (this.mode.equalsIgnoreCase("baru")) {
             holder.parentLayout.setOnClickListener(new View.OnClickListener() {
@@ -82,8 +88,30 @@ public class PetugasAdapter extends RecyclerView.Adapter<PetugasAdapter.ViewHold
         return list.size();
     }
 
+    public void cariData(String text) {
+        text = text.toLowerCase(Locale.getDefault());
+        list.clear();
+        if (text.length() == 0) {
+            list.addAll(list_sementara);
+        } else {
+            for (int i = 0; i < list_sementara.size(); i++) {
+                if (list_sementara.get(i).getNo_regis().toLowerCase(Locale.getDefault()).contains(text)) {
+                    list.add(list_sementara.get(i));
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
+
+    public void reset() {
+        list.clear();
+        list.addAll(list_sementara);
+        notifyDataSetChanged();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvNomerSurat;
+        TextView tvNomerRegistrasi;
         TextView tvTanggal;
         TextView tvInstansiPemohon;
         TextView tvJenisKegiatan;
@@ -94,6 +122,7 @@ public class PetugasAdapter extends RecyclerView.Adapter<PetugasAdapter.ViewHold
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvNomerSurat = itemView.findViewById(R.id.tvNomerSurat);
+            tvNomerRegistrasi = itemView.findViewById(R.id.tvNomerRegistrasi);
             tvTanggal = itemView.findViewById(R.id.tvTanggal);
             tvInstansiPemohon = itemView.findViewById(R.id.tvInstansiPemohon);
             tvJenisKegiatan = itemView.findViewById(R.id.tvJenisKegiatan);

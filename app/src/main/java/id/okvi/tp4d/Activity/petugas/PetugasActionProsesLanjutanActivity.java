@@ -152,6 +152,14 @@ public class PetugasActionProsesLanjutanActivity extends AppCompatActivity {
 
         share_lokasi.getEditText().setText(daftarPemohonModel.getShare_lokasi());
 
+
+        if (daftarPemohonModel.getJenis_kegiatan().equalsIgnoreCase("Pengadaan Tanah")) {
+            uitzet_perencanaan.setHint("Perencanaan");
+            pcm_persiapan.setHint("Persiapan");
+            mc_pelaksanaan.setHint("Pelaksanaan");
+            pho_penyerahan_hasil.setHint("Penyerahan Hasil");
+        }
+
         btnTambahFoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -458,8 +466,6 @@ public class PetugasActionProsesLanjutanActivity extends AppCompatActivity {
                                 }
                                 rvFoto.setLayoutManager(new GridLayoutManager(context, 4));
                                 rvFoto.setAdapter(new FotoAdapter(context, list));
-                            } else {
-                                new Bantuan(context).alertDialogPeringatan(object.getString("result"));
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

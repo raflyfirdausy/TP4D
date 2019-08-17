@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,8 +37,11 @@ public class PetugasBaruProgressSelesaiTolakActivity extends AppCompatActivity {
     private RecyclerView rvKonten;
     private TextView tvKeterangan;
     private List<DaftarPemohonModel> list = new ArrayList<>();
+    private List<DaftarPemohonModel> list_sementara = new ArrayList<>();
     private Context context = PetugasBaruProgressSelesaiTolakActivity.this;
     private String URL_API = null;
+    private SearchView searchView;
+    private PetugasAdapter petugasAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,7 @@ public class PetugasBaruProgressSelesaiTolakActivity extends AppCompatActivity {
     private void init() {
         rvKonten = findViewById(R.id.rvKonten);
         tvKeterangan = findViewById(R.id.tvKeterangan);
+        searchView = findViewById(R.id.searchView);
 
         if (getIntent().hasExtra("mode") &&
                 getIntent().getStringExtra("mode")
@@ -65,6 +70,25 @@ public class PetugasBaruProgressSelesaiTolakActivity extends AppCompatActivity {
         } else {
             URL_API = API.GET_PETUGAS_BARU + SharedPreferenceManager.getInstance(context).getUser().getJenis();
         }
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String query) {
+                if (list_sementara.size() > 0) {
+                    if (searchView.getQuery().toString().length() > 0) {
+                        petugasAdapter.cariData(query);
+                    } else {
+                        petugasAdapter.cariData("");
+                    }
+                }
+                return true;
+            }
+        });
     }
 
     @Override
@@ -132,9 +156,11 @@ public class PetugasBaruProgressSelesaiTolakActivity extends AppCompatActivity {
                                     daftarPemohonModel.setCatatan(jsonObject.getString("catatan"));
 
                                     list.add(daftarPemohonModel);
+                                    list_sementara.add(daftarPemohonModel);
                                 }
+                                petugasAdapter = new PetugasAdapter(context, list, getIntent().getStringExtra("mode"));
                                 rvKonten.setLayoutManager(new LinearLayoutManager(context, RecyclerView.VERTICAL, false));
-                                rvKonten.setAdapter(new PetugasAdapter(context, list, getIntent().getStringExtra("mode")));
+                                rvKonten.setAdapter(petugasAdapter);
                             } else {
                                 tvKeterangan.setText(object.getString("result"));
                                 tvKeterangan.setVisibility(View.VISIBLE);

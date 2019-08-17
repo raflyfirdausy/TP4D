@@ -318,7 +318,7 @@ public class PetugasActionProsesAwalActivity extends AppCompatActivity {
                                     daftarPemohonModel.setNomor_sprint(jsonObject.getString("nomor_sprint"));
                                     daftarPemohonModel.setTanggal_sprint(jsonObject.getString("tanggal_sprint"));
                                     daftarPemohonModel.setNomor_sprint_pendampingan(jsonObject.getString("nomor_sprint_pendampingan"));
-                                    daftarPemohonModel.setTanggal_sprint(jsonObject.getString("tanggal_sprint_pendampingan"));
+                                    daftarPemohonModel.setTanggal_sprint_pendampingan(jsonObject.getString("tanggal_sprint_pendampingan"));
                                     daftarPemohonModel.setAnggota1(jsonObject.getString("anggota1"));
                                     daftarPemohonModel.setAnggota2(jsonObject.getString("anggota2"));
                                     daftarPemohonModel.setAnggota3(jsonObject.getString("anggota3"));

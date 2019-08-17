@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/gray_muda_banget"
     android:orientation="vertical"
     tools:context=".Activity.petugas.PetugasBaruProgressSelesaiTolakActivity">
@@ -40,11 +41,23 @@
 
     </RelativeLayout>
 
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:layout_marginBottom="4dp"
+        android:background="@color/white"
+        app:defaultQueryHint="Cari disini"
+        app:iconifiedByDefault="false">
+
+    </androidx.appcompat.widget.SearchView>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvKonten"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/header" />
+        android:layout_below="@+id/searchView" />
 
     <TextView
         android:id="@+id/tvKeterangan"
