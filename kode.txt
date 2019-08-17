@@ -1,0 +1,29 @@
+kode = 0 
+user : belum di proses
+kajari : permohonan baru
+petugas : ga ada
+
+kode = 1
+user : di acc kajari - masuk proses
+kajari : masuk penugasan
+petugas : permohonan baru
+
+kode = -1
+user : di tolak kajari
+kajari : di tolak (ga tampil)
+petugas : ga tampil
+
+kode = 2
+user : proses di petugas
+kajari : proses
+petugas : input data
+
+kode = -2
+user : di tolak petugas
+kajari : ditolak petugas
+petugas : ilang
+
+kode = 3
+user : selesai
+kajari : selesai
+petugas : selesai
