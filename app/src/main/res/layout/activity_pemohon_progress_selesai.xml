@@ -53,11 +53,17 @@
 
     </androidx.appcompat.widget.SearchView>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvKonten"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swRefresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/searchView" />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/searchView">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvKonten"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <TextView
         android:id="@+id/tvKeterangan"

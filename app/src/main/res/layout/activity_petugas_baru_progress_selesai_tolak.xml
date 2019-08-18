@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/gray_muda_banget"
     android:orientation="vertical"
     tools:context=".Activity.petugas.PetugasBaruProgressSelesaiTolakActivity">
@@ -53,11 +53,17 @@
 
     </androidx.appcompat.widget.SearchView>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvKonten"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swRefresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/searchView" />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/searchView">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvKonten"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <TextView
         android:id="@+id/tvKeterangan"

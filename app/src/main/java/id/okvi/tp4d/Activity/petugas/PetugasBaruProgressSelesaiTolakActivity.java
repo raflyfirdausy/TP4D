@@ -1,6 +1,5 @@
 package id.okvi.tp4d.Activity.petugas;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -42,6 +42,7 @@ public class PetugasBaruProgressSelesaiTolakActivity extends AppCompatActivity {
     private String URL_API = null;
     private SearchView searchView;
     private PetugasAdapter petugasAdapter;
+    private SwipeRefreshLayout swRefresh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,7 @@ public class PetugasBaruProgressSelesaiTolakActivity extends AppCompatActivity {
         rvKonten = findViewById(R.id.rvKonten);
         tvKeterangan = findViewById(R.id.tvKeterangan);
         searchView = findViewById(R.id.searchView);
+        swRefresh = findViewById(R.id.swRefresh);
 
         if (getIntent().hasExtra("mode") &&
                 getIntent().getStringExtra("mode")
@@ -70,6 +72,18 @@ public class PetugasBaruProgressSelesaiTolakActivity extends AppCompatActivity {
         } else {
             URL_API = API.GET_PETUGAS_BARU + SharedPreferenceManager.getInstance(context).getUser().getJenis();
         }
+
+        swRefresh.setColorSchemeResources(R.color.colorPrimary,
+                android.R.color.holo_green_dark,
+                android.R.color.holo_orange_dark,
+                android.R.color.holo_blue_dark);
+
+        swRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getData();
+            }
+        });
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -98,10 +112,11 @@ public class PetugasBaruProgressSelesaiTolakActivity extends AppCompatActivity {
     }
 
     private void getData() {
-        final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Loading ...");
-        progressDialog.setIndeterminate(true);
-        progressDialog.show();
+//        final ProgressDialog progressDialog = new ProgressDialog(context);
+//        progressDialog.setMessage("Loading ...");
+//        progressDialog.setIndeterminate(true);
+//        progressDialog.show();
+        swRefresh.setRefreshing(true);
 
         RequestQueue requestQueue;
         requestQueue = Volley.newRequestQueue(context);
@@ -110,7 +125,8 @@ public class PetugasBaruProgressSelesaiTolakActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        progressDialog.dismiss();
+//                        progressDialog.dismiss();
+                        swRefresh.setRefreshing(false);
                         list.clear();
                         try {
                             JSONObject object = new JSONObject(response);
@@ -173,7 +189,8 @@ public class PetugasBaruProgressSelesaiTolakActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                progressDialog.dismiss();
+//                progressDialog.dismiss();
+                swRefresh.setRefreshing(false);
                 new Bantuan(context).toastLong(error.getMessage());
             }
         });

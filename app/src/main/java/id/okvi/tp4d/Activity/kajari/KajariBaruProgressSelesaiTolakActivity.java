@@ -1,6 +1,5 @@
 package id.okvi.tp4d.Activity.kajari;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -40,6 +40,7 @@ public class KajariBaruProgressSelesaiTolakActivity extends AppCompatActivity {
     private String URL_API = null;
     private SearchView searchView;
     private KajariAdapter kajariAdapter;
+    private SwipeRefreshLayout swRefresh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,7 @@ public class KajariBaruProgressSelesaiTolakActivity extends AppCompatActivity {
         rvKonten = findViewById(R.id.rvKonten);
         tvKeterangan = findViewById(R.id.tvKeterangan);
         searchView = findViewById(R.id.searchView);
+        swRefresh = findViewById(R.id.swRefresh);
 
         if (getIntent().hasExtra("mode")) {
             if (getIntent().getStringExtra("mode")
@@ -70,6 +72,18 @@ public class KajariBaruProgressSelesaiTolakActivity extends AppCompatActivity {
         } else {
             finish();
         }
+
+        swRefresh.setColorSchemeResources(R.color.colorPrimary,
+                android.R.color.holo_green_dark,
+                android.R.color.holo_orange_dark,
+                android.R.color.holo_blue_dark);
+
+        swRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getData();
+            }
+        });
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -95,14 +109,15 @@ public class KajariBaruProgressSelesaiTolakActivity extends AppCompatActivity {
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        getDataKajariBaru();
+        getData();
     }
 
-    private void getDataKajariBaru() {
-        final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Loading ...");
-        progressDialog.setIndeterminate(true);
-        progressDialog.show();
+    private void getData() {
+//        final ProgressDialog progressDialog = new ProgressDialog(context);
+//        progressDialog.setMessage("Loading ...");
+//        progressDialog.setIndeterminate(true);
+//        progressDialog.show();
+        swRefresh.setRefreshing(true);
 
         RequestQueue requestQueue;
         requestQueue = Volley.newRequestQueue(context);
@@ -111,7 +126,8 @@ public class KajariBaruProgressSelesaiTolakActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        progressDialog.dismiss();
+//                        progressDialog.dismiss();
+                        swRefresh.setRefreshing(false);
                         list.clear();
                         try {
                             JSONObject object = new JSONObject(response);
@@ -174,7 +190,8 @@ public class KajariBaruProgressSelesaiTolakActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                progressDialog.dismiss();
+//                progressDialog.dismiss();
+                swRefresh.setRefreshing(false);
                 new Bantuan(context).toastLong(error.getMessage());
             }
         });
