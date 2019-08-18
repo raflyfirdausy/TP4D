@@ -27,7 +27,7 @@ public class PetugasAdapter extends RecyclerView.Adapter<PetugasAdapter.ViewHold
     private Context context;
     private List<DaftarPemohonModel> list;
     private List<DaftarPemohonModel> list_sementara;
-    private String mode = "baru";
+    private String mode;
 
     public PetugasAdapter(Context context, List<DaftarPemohonModel> list, String mode) {
         this.context = context;

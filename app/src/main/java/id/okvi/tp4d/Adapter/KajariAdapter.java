@@ -1,5 +1,6 @@
 package id.okvi.tp4d.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,18 +18,21 @@ import java.util.List;
 import java.util.Locale;
 
 import id.okvi.tp4d.Activity.kajari.KajariActionDisposisiActivity;
+import id.okvi.tp4d.Activity.kajari.KajariActionProgressActivity;
 import id.okvi.tp4d.Model.DaftarPemohonModel;
 import id.okvi.tp4d.R;
 
-public class KajariBaruAdapter extends RecyclerView.Adapter<KajariBaruAdapter.ViewHolder> {
+public class KajariAdapter extends RecyclerView.Adapter<KajariAdapter.ViewHolder> {
 
     private Context context;
     private List<DaftarPemohonModel> list;
     private List<DaftarPemohonModel> list_sementara;
+    private String mode;
 
-    public KajariBaruAdapter(Context context, List<DaftarPemohonModel> list) {
+    public KajariAdapter(Context context, List<DaftarPemohonModel> list, String mode) {
         this.context = context;
         this.list = list;
+        this.mode = mode;
         this.list_sementara = new ArrayList<>();
         this.list_sementara.addAll(list);
     }
@@ -40,26 +44,40 @@ public class KajariBaruAdapter extends RecyclerView.Adapter<KajariBaruAdapter.Vi
         return new ViewHolder(itemView);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
 
         holder.tvNomerSurat.setText(list.get(position).getNomer_surat());
         holder.tvTanggal.setText(list.get(position).getTanggal_surat());
         holder.tvNomerRegistrasi.setText(list.get(position).getNo_regis());
-        holder.tvJenisKegiatan.setText(list.get(position).getJenis_kegiatan());
-        holder.tvLokasi.setText(list.get(position).getLokasi_kegiatan());
-        holder.tvWaktuPengerjaan.setText("ngko slur");
+        holder.tvJenisKegiatan.setText("Jenis kegiatan : " + list.get(position).getJenis_kegiatan());
+        holder.tvLokasi.setText("Lokasi : " + list.get(position).getLokasi_kegiatan());
+        holder.tvWaktuPengerjaan.setText("Waktu pengerjaan : ngko slur");
 
-        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, KajariActionDisposisiActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("data", list.get(position));
-                intent.putExtras(bundle);
-                context.startActivity(intent);
-            }
-        });
+        if (this.mode.equalsIgnoreCase("baru")) {
+            holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, KajariActionDisposisiActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("data", list.get(position));
+                    intent.putExtras(bundle);
+                    context.startActivity(intent);
+                }
+            });
+        } else {
+            holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, KajariActionProgressActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("data", list.get(position));
+                    intent.putExtras(bundle);
+                    context.startActivity(intent);
+                }
+            });
+        }
 
     }
 

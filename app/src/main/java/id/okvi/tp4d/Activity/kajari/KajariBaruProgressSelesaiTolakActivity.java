@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,7 +25,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import id.okvi.tp4d.Adapter.KajariBaruAdapter;
+import id.okvi.tp4d.Adapter.KajariAdapter;
 import id.okvi.tp4d.Helper.API;
 import id.okvi.tp4d.Helper.Bantuan;
 import id.okvi.tp4d.Model.DaftarPemohonModel;
@@ -34,8 +35,11 @@ public class KajariBaruProgressSelesaiTolakActivity extends AppCompatActivity {
     private RecyclerView rvKonten;
     private TextView tvKeterangan;
     private List<DaftarPemohonModel> list = new ArrayList<>();
+    private List<DaftarPemohonModel> list_sementara = new ArrayList<>();
     private Context context = KajariBaruProgressSelesaiTolakActivity.this;
     private String URL_API = null;
+    private SearchView searchView;
+    private KajariAdapter kajariAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +51,7 @@ public class KajariBaruProgressSelesaiTolakActivity extends AppCompatActivity {
     private void init() {
         rvKonten = findViewById(R.id.rvKonten);
         tvKeterangan = findViewById(R.id.tvKeterangan);
+        searchView = findViewById(R.id.searchView);
 
         if (getIntent().hasExtra("mode")) {
             if (getIntent().getStringExtra("mode")
@@ -65,6 +70,26 @@ public class KajariBaruProgressSelesaiTolakActivity extends AppCompatActivity {
         } else {
             finish();
         }
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String query) {
+                if (list_sementara.size() > 0) {
+                    if (searchView.getQuery().toString().length() > 0) {
+                        kajariAdapter.cariData(query);
+                    } else {
+                        kajariAdapter.cariData("");
+                    }
+                }
+                return true;
+            }
+        });
+
     }
 
     @Override
@@ -125,11 +150,18 @@ public class KajariBaruProgressSelesaiTolakActivity extends AppCompatActivity {
                                     daftarPemohonModel.setEmail(jsonObject.getString("email"));
                                     daftarPemohonModel.setFoto_dokumen(jsonObject.getString("foto_dokumen"));
                                     daftarPemohonModel.setStatus(jsonObject.getString("status"));
+                                    daftarPemohonModel.setDisposisi(jsonObject.getString("disposisi"));
+                                    daftarPemohonModel.setCatatan_disposisi(jsonObject.getString("catatan_disposisi"));
+                                    daftarPemohonModel.setHasil_telaah(jsonObject.getString("hasil_telaah"));
+                                    daftarPemohonModel.setCatatan(jsonObject.getString("catatan"));
+                                    daftarPemohonModel.setCatatan(jsonObject.getString("catatan"));
 
                                     list.add(daftarPemohonModel);
+                                    list_sementara.add(daftarPemohonModel);
                                 }
+                                kajariAdapter = new KajariAdapter(context, list, getIntent().getStringExtra("mode"));
                                 rvKonten.setLayoutManager(new LinearLayoutManager(context, RecyclerView.VERTICAL, false));
-                                rvKonten.setAdapter(new KajariBaruAdapter(context, list));
+                                rvKonten.setAdapter(kajariAdapter);
                             } else {
                                 tvKeterangan.setText(object.getString("result"));
                                 tvKeterangan.setVisibility(View.VISIBLE);
