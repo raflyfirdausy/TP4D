@@ -12,7 +12,6 @@ import android.widget.ViewFlipper;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import id.okvi.tp4d.Helper.Bantuan;
 import id.okvi.tp4d.Helper.SharedPreferenceManager;
 import id.okvi.tp4d.R;
 
@@ -56,14 +55,16 @@ public class PemohonHomeActivity extends AppCompatActivity {
         llProgress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new Bantuan(context).toastLong("llProgress");
+                startActivity(new Intent(context, PemohonProgressSelesaiActivity.class)
+                        .putExtra("mode", "progress"));
             }
         });
 
         llSelesai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new Bantuan(context).toastLong("llSelesai");
+                startActivity(new Intent(context, PemohonProgressSelesaiActivity.class)
+                        .putExtra("mode", "selesai"));
             }
         });
 

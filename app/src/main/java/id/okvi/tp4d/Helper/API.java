@@ -2,7 +2,7 @@ package id.okvi.tp4d.Helper;
 
 public class API {
 
-    public final static String HOST_ROOT = "http://192.168.1.18/tp4d/api/";
+    public final static String HOST_ROOT = "http://192.168.1.5/tp4d/api/";
 
     public final static String LOGIN_PEMOHON = HOST_ROOT + "login_pemohon.php";
     public final static String REGISTER_PEMOHON = HOST_ROOT + "register_pemohon.php";
@@ -24,4 +24,6 @@ public class API {
     public final static String GET_KAJARI_PROGRESS = HOST_ROOT + "get_kajari_progress.php";
     public final static String GET_KAJARI_SELESAI = HOST_ROOT + "get_kajari_selesai.php";
     public final static String GET_KAJARI_TOLAK = HOST_ROOT + "get_kajari_tolak.php";
+    public final static String GET_PEMOHON_PROGRESS = HOST_ROOT + "get_pemohon_progress.php?id_pemohon=";
+    public final static String GET_PEMOHON_SELESAI = HOST_ROOT + "get_pemohon_selesai.php?id_pemohon=";
 }
