@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -176,8 +175,8 @@ public class KajariActionProgressActivity extends AppCompatActivity {
         btnOpenGoogleMaps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!TextUtils.isEmpty(daftarPemohonModel.getLatitude()) &&
-                        !TextUtils.isEmpty(daftarPemohonModel.getLongitude())) {
+                if (!daftarPemohonModel.getLatitude().equalsIgnoreCase("null") &&
+                        !daftarPemohonModel.getLongitude().equalsIgnoreCase("null")) {
                     startActivity(new Intent(Intent.ACTION_VIEW,
                             Uri.parse("http://maps.google.com/maps?daddr=" +
                                     daftarPemohonModel.getLatitude() + "," + daftarPemohonModel.getLongitude())));
