@@ -169,7 +169,9 @@ public class PetugasBaruProgressSelesaiTolakActivity extends AppCompatActivity {
                                     daftarPemohonModel.setCatatan_disposisi(jsonObject.getString("catatan_disposisi"));
                                     daftarPemohonModel.setHasil_telaah(jsonObject.getString("hasil_telaah"));
                                     daftarPemohonModel.setCatatan(jsonObject.getString("catatan"));
-                                    daftarPemohonModel.setCatatan(jsonObject.getString("catatan"));
+                                    daftarPemohonModel.setShare_lokasi(jsonObject.getString("share_lokasi"));
+                                    daftarPemohonModel.setLatitude(jsonObject.getString("latitude"));
+                                    daftarPemohonModel.setLongitude(jsonObject.getString("longitude"));
 
                                     list.add(daftarPemohonModel);
                                     list_sementara.add(daftarPemohonModel);

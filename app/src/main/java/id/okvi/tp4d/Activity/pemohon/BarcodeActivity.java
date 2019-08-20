@@ -40,10 +40,7 @@ public class BarcodeActivity extends AppCompatActivity {
         btnKembali.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, PemohonHomeActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                finish();
+                aksi();
             }
         });
 
@@ -63,9 +60,17 @@ public class BarcodeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(context, PemohonHomeActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-        finish();
+        aksi();
+    }
+
+    private void aksi() {
+        if (getIntent().hasExtra("mode") || getIntent().getStringExtra("mode").equalsIgnoreCase("back")) {
+            finish();
+        } else {
+            Intent intent = new Intent(context, PemohonHomeActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+        }
     }
 }

@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimaryDark"
         android:gravity="center"
-        android:padding="@dimen/dp_8"
+        android:padding="@dimen/dp_16"
         android:text="TANDA BUKTI PENDAFTARAN PENGAWALAN"
         android:textColor="@color/white"
         android:textSize="20sp"
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_16"
             android:backgroundTint="@color/colorPrimaryDark"
-            android:text="Kembali Ke Menu Awal"
+            android:text="Kembali"
             android:textColor="@color/white"
             android:textStyle="bold"
             tools:targetApi="lollipop" />

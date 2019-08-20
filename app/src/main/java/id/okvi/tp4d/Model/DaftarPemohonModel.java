@@ -56,7 +56,25 @@ public class DaftarPemohonModel implements Serializable {
             anggota6,
             nik6,
             share_lokasi,
+            latitude,
+            longitude,
             serah_terima;
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
 
     public String getNomor_sprint_pendampingan() {
         return nomor_sprint_pendampingan;

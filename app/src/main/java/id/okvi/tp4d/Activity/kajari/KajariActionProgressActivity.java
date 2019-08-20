@@ -2,7 +2,12 @@ package id.okvi.tp4d.Activity.kajari;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +30,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import id.okvi.tp4d.Activity.pemohon.BarcodeActivity;
 import id.okvi.tp4d.Adapter.FotoAdapter;
 import id.okvi.tp4d.Helper.API;
 import id.okvi.tp4d.Helper.Bantuan;
@@ -57,6 +63,9 @@ public class KajariActionProgressActivity extends AppCompatActivity {
     private TextInputLayout p_mc_pelaksanaan;
     private TextInputLayout pho_penyerahan_hasil;
     private TextInputLayout p_pho_penyerahan_hasil;
+    private TextInputLayout share_lokasi;
+    private Button btnOpenGoogleMaps;
+    private Button btnLihatBarcode;
     private RecyclerView rvFoto;
     private ImageView ivSurat;
     private List<String> list = new ArrayList<>();
@@ -70,6 +79,7 @@ public class KajariActionProgressActivity extends AppCompatActivity {
 
     private void init() {
         daftarPemohonModel = (DaftarPemohonModel) getIntent().getExtras().getSerializable("data");
+
         etInstansiPemohon = findViewById(R.id.etInstansiPemohon);
         etAlamatInstansi = findViewById(R.id.etAlamatInstansi);
         etNomorSurat = findViewById(R.id.etNomorSurat);
@@ -94,6 +104,9 @@ public class KajariActionProgressActivity extends AppCompatActivity {
         p_pho_penyerahan_hasil = findViewById(R.id.p_pho_penyerahan_hasil);
         rvFoto = findViewById(R.id.rvFoto);
         ivSurat = findViewById(R.id.ivSurat);
+        share_lokasi = findViewById(R.id.share_lokasi);
+        btnOpenGoogleMaps = findViewById(R.id.btnOpenGoogleMaps);
+        btnLihatBarcode = findViewById(R.id.btnLihatBarcode);
 
         etInstansiPemohon.getEditText().setFocusable(false);
         etAlamatInstansi.getEditText().setFocusable(false);
@@ -117,6 +130,7 @@ public class KajariActionProgressActivity extends AppCompatActivity {
         p_mc_pelaksanaan.getEditText().setFocusable(false);
         pho_penyerahan_hasil.getEditText().setFocusable(false);
         p_pho_penyerahan_hasil.getEditText().setFocusable(false);
+        share_lokasi.getEditText().setFocusable(false);
 
         if (daftarPemohonModel.getJenis_kegiatan().equalsIgnoreCase("Pengadaan Tanah")) {
             uitzet_perencanaan.setHint("Perencanaan");
@@ -147,6 +161,31 @@ public class KajariActionProgressActivity extends AppCompatActivity {
         p_mc_pelaksanaan.getEditText().setText(daftarPemohonModel.getP_mc_pelaksanaan());
         pho_penyerahan_hasil.getEditText().setText(daftarPemohonModel.getPho_penyerahan_hasil());
         p_pho_penyerahan_hasil.getEditText().setText(daftarPemohonModel.getP_pho_penyerahan_hasil());
+        share_lokasi.getEditText().setText(daftarPemohonModel.getShare_lokasi());
+
+        btnLihatBarcode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, BarcodeActivity.class);
+                intent.putExtra("no_regis", daftarPemohonModel.getNo_regis());
+                intent.putExtra("mode", "back");
+                startActivity(intent);
+            }
+        });
+
+        btnOpenGoogleMaps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!TextUtils.isEmpty(daftarPemohonModel.getLatitude()) &&
+                        !TextUtils.isEmpty(daftarPemohonModel.getLongitude())) {
+                    startActivity(new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("http://maps.google.com/maps?daddr=" +
+                                    daftarPemohonModel.getLatitude() + "," + daftarPemohonModel.getLongitude())));
+                } else {
+                    new Bantuan(context).alertDialogPeringatan("Alamat Lokasi Belum di atur");
+                }
+            }
+        });
 
         Picasso.get().load(daftarPemohonModel.getFoto_dokumen())
                 .placeholder(R.drawable.placeholder)
