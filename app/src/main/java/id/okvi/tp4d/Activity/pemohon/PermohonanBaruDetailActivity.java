@@ -358,9 +358,11 @@ public class PermohonanBaruDetailActivity extends AppCompatActivity {
                                 JSONObject object = new JSONObject(response);
                                 new Bantuan(context).toastLong(object.getString("result"));
                                 if (object.getInt("status") == 1) {
-                                    Intent intent = new Intent(context, PemohonHomeActivity.class);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    Intent intent = new Intent(context, BarcodeActivity.class);
+                                    intent.putExtra("no_regis", object.getString("no_regis"));
+//                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
+                                    finish();
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();

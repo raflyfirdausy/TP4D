@@ -1,6 +1,8 @@
 package id.okvi.tp4d.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import id.okvi.tp4d.Activity.kajari.KajariActionProgressActivity;
 import id.okvi.tp4d.Model.DaftarPemohonModel;
 import id.okvi.tp4d.R;
 
@@ -41,7 +44,7 @@ public class PemohonAdapter extends RecyclerView.Adapter<PemohonAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.tvNomerSurat.setText(list.get(position).getNomer_surat());
         holder.tvTanggal.setText(list.get(position).getTanggal_surat());
         holder.tvInstansiPemohon.setText("Instansi Pemohon : " + list.get(position).getInstansi_pemohon());
@@ -49,6 +52,20 @@ public class PemohonAdapter extends RecyclerView.Adapter<PemohonAdapter.ViewHold
         holder.tvPaguAnggaran.setText("Pagu Anggaran : " + list.get(position).getPagu_anggaran());
         holder.tvTahun.setText("Tahun : " + list.get(position).getTahun_anggaran());
         holder.tvNomerRegistrasi.setText("No Registrasi : " + list.get(position).getNo_regis());
+
+        if (mode.equalsIgnoreCase("progress")) {
+            holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, KajariActionProgressActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("data", list.get(position));
+                    intent.putExtras(bundle);
+                    intent.putExtra("mode", mode);
+                    context.startActivity(intent);
+                }
+            });
+        }
     }
 
     @Override

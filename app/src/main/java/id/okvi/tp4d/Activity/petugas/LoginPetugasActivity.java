@@ -107,6 +107,7 @@ public class LoginPetugasActivity extends AppCompatActivity {
                 protected Map<String, String> getParams() {
                     Map<String, String> stringMap = new HashMap<>();
                     stringMap.put("email", etEmail.getEditText().getText().toString());
+                    stringMap.put("nip", etEmail.getEditText().getText().toString());
                     stringMap.put("password", etPassword.getEditText().getText().toString());
                     return stringMap;
                 }

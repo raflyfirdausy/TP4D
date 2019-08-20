@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -26,6 +27,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.Places;
+import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONArray;
@@ -47,7 +55,8 @@ import id.okvi.tp4d.Helper.Bantuan;
 import id.okvi.tp4d.Model.DaftarPemohonModel;
 import id.okvi.tp4d.R;
 
-public class PetugasActionProsesLanjutanActivity extends AppCompatActivity {
+public class PetugasActionProsesLanjutanActivity extends AppCompatActivity
+        implements GoogleApiClient.OnConnectionFailedListener {
 
     private Context context = PetugasActionProsesLanjutanActivity.this;
     private DaftarPemohonModel daftarPemohonModel;
@@ -83,6 +92,8 @@ public class PetugasActionProsesLanjutanActivity extends AppCompatActivity {
     private Button btnNext;
     private List<String> list = new ArrayList<>();
     private int tanggal, bulan, tahun;
+    private GoogleApiClient googleApiClient;
+    private String latitude = null, longitude = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +136,13 @@ public class PetugasActionProsesLanjutanActivity extends AppCompatActivity {
         btnSerahTerima = findViewById(R.id.btnSerahTerima);
         btnNext = findViewById(R.id.btnNext);
 
+        googleApiClient = new GoogleApiClient
+                .Builder(context)
+                .addApi(Places.GEO_DATA_API)
+                .addApi(Places.PLACE_DETECTION_API)
+                .enableAutoManage(this, this)
+                .build();
+
         uitzet_perencanaan.getEditText().setText(daftarPemohonModel.getUitzet_perencanaan());
         pcm_persiapan.getEditText().setText(daftarPemohonModel.getPcm_persiapan());
         mc_pelaksanaan.getEditText().setText(daftarPemohonModel.getMc_pelaksanaan());
@@ -151,6 +169,7 @@ public class PetugasActionProsesLanjutanActivity extends AppCompatActivity {
         p_pho_penyerahan_hasil.getEditText().setText(daftarPemohonModel.getP_pho_penyerahan_hasil());
 
         share_lokasi.getEditText().setText(daftarPemohonModel.getShare_lokasi());
+        share_lokasi.setFocusable(false);
 
 
         if (daftarPemohonModel.getJenis_kegiatan().equalsIgnoreCase("Pengadaan Tanah")) {
@@ -187,6 +206,13 @@ public class PetugasActionProsesLanjutanActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 CekInputan(false);
+            }
+        });
+
+        share_lokasi.getEditText().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getTempat();
             }
         });
 
@@ -234,6 +260,19 @@ public class PetugasActionProsesLanjutanActivity extends AppCompatActivity {
 
 
         get_foto_dokumentasi();
+    }
+
+    private void getTempat() {
+        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+        try {
+            startActivityForResult(builder.build(PetugasActionProsesLanjutanActivity.this), 123);
+        } catch (GooglePlayServicesRepairableException e) {
+            new Bantuan(context).alertDialogPeringatan(e.getMessage());
+            e.printStackTrace();
+        } catch (GooglePlayServicesNotAvailableException e) {
+            new Bantuan(context).alertDialogPeringatan(e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     private void getTanggal(final String jenis) {
@@ -365,6 +404,10 @@ public class PetugasActionProsesLanjutanActivity extends AppCompatActivity {
                 stringMap.put("p_pho_penyerahan_hasil", !TextUtils.isEmpty(p_pho_penyerahan_hasil.getEditText().getText().toString()) ? p_pho_penyerahan_hasil.getEditText().getText().toString() : "");
                 stringMap.put("share_lokasi", !TextUtils.isEmpty(share_lokasi.getEditText().getText().toString()) ? share_lokasi.getEditText().getText().toString() : "");
 
+
+                stringMap.put("latitude", (latitude != null && !latitude.isEmpty()) ? latitude : "");
+                stringMap.put("longitude", (longitude != null && !longitude.isEmpty()) ? longitude : "");
+
                 if (isModeSerahTerima) {
                     stringMap.put("serah_terima", !TextUtils.isEmpty(serah_terima.getEditText().getText().toString()) ? serah_terima.getEditText().getText().toString() : "");
                     stringMap.put("is_serah_terima", "1");
@@ -379,18 +422,27 @@ public class PetugasActionProsesLanjutanActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            try {
-                assert data != null;
-                final Uri imageUri = data.getData();
-                final InputStream imageStream = getContentResolver().openInputStream(imageUri);
-                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                prosesUploadFoto(selectedImage);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-                new Bantuan(context).toastLong(e.getMessage());
-            }
 
+        if (requestCode == 123) {
+            if (resultCode == RESULT_OK) {
+                Place place = PlacePicker.getPlace(data, this);
+                share_lokasi.getEditText().setText(place.getAddress());
+                latitude = String.valueOf(place.getLatLng().latitude);
+                longitude = String.valueOf(place.getLatLng().longitude);
+            }
+        } else if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                try {
+                    assert data != null;
+                    final Uri imageUri = data.getData();
+                    final InputStream imageStream = getContentResolver().openInputStream(imageUri);
+                    final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                    prosesUploadFoto(selectedImage);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                    new Bantuan(context).toastLong(e.getMessage());
+                }
+            }
         }
     }
 
@@ -485,4 +537,8 @@ public class PetugasActionProsesLanjutanActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        new Bantuan(context).toastLong(connectionResult.getErrorMessage());
+    }
 }

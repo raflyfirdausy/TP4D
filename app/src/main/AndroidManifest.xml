@@ -15,7 +15,16 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="m">
-        <activity android:name=".Activity.pemohon.PemohonProgressSelesaiActivity"></activity>
+        <activity android:name=".Activity.pemohon.BarcodeActivity"></activity>
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDnqxnMV3hT6B0BY69jjzNPD1z_yvmuta0" />
+
+        <activity android:name=".Activity.pemohon.PemohonProgressSelesaiActivity" />
         <activity android:name=".Activity.kajari.KajariActionProgressActivity" />
         <activity android:name=".Activity.petugas.PetugasActionProsesAwalActivity" />
         <activity android:name=".Activity.petugas.PetugasActionProsesLanjutanActivity" />
