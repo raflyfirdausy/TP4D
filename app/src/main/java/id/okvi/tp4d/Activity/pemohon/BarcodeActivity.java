@@ -64,9 +64,11 @@ public class BarcodeActivity extends AppCompatActivity {
     }
 
     private void aksi() {
-        if (getIntent().hasExtra("mode") || getIntent().getStringExtra("mode").equalsIgnoreCase("back")) {
+        if (getIntent().hasExtra("mode") && getIntent().getStringExtra("mode").equalsIgnoreCase("back")) {
+//            new Bantuan(context).toastLong("if");
             finish();
         } else {
+//            new Bantuan(context).toastLong("else");
             Intent intent = new Intent(context, PemohonHomeActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);

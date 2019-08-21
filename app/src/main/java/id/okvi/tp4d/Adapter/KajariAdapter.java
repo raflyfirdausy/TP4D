@@ -13,12 +13,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 import id.okvi.tp4d.Activity.kajari.KajariActionDisposisiActivity;
 import id.okvi.tp4d.Activity.kajari.KajariActionProgressActivity;
+import id.okvi.tp4d.Helper.Bantuan;
+import id.okvi.tp4d.Helper.Waktu;
 import id.okvi.tp4d.Model.DaftarPemohonModel;
 import id.okvi.tp4d.R;
 
@@ -53,7 +58,24 @@ public class KajariAdapter extends RecyclerView.Adapter<KajariAdapter.ViewHolder
         holder.tvNomerRegistrasi.setText(list.get(position).getNo_regis());
         holder.tvJenisKegiatan.setText("Jenis kegiatan : " + list.get(position).getJenis_kegiatan());
         holder.tvLokasi.setText("Lokasi : " + list.get(position).getLokasi_kegiatan());
-        holder.tvWaktuPengerjaan.setText("Waktu pengerjaan : ngko slur");
+        Date tanggalAwal = null, tanggalAkhir = null;
+        SimpleDateFormat asli = new SimpleDateFormat("yyyy-mm-dd");
+        SimpleDateFormat modify = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        try {
+            tanggalAwal = asli.parse(list.get(position).getAwal_pekerjaan());
+            tanggalAkhir = asli.parse(list.get(position).getAkhir_pekerjaan());
+
+        } catch (ParseException e) {
+            new Bantuan(context).toastLong(e.getMessage());
+            e.printStackTrace();
+        }
+
+        long timeStampAwal = new Waktu(context).convertToTimeStap(modify.format(tanggalAwal));
+        long timeStampAkhir = new Waktu(context).convertToTimeStap(modify.format(tanggalAkhir));
+
+        holder.tvWaktuPengerjaan.setText("Waktu pengerjaan : " + new Waktu(context).getBerapaHari(
+                new Date(timeStampAwal), new Date(timeStampAkhir)
+        ) + " Hari");
 
         if (this.mode.equalsIgnoreCase("baru")) {
             holder.parentLayout.setOnClickListener(new View.OnClickListener() {

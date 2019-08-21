@@ -87,9 +87,12 @@ public class LoginPetugasActivity extends AppCompatActivity {
                                                     jsonObject.getString("nama")
                                             )
                                     );
+                                    new Bantuan(context).toastLong("Berhasil Login");
                                     Intent intent = new Intent(context, PetugasHomeActivity.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
+                                } else {
+                                    new Bantuan(context).toastLong(object.getString("result"));
                                 }
                             } catch (JSONException e) {
                                 new Bantuan(context).alertDialogPeringatan(e.getMessage());

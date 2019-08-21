@@ -88,6 +88,7 @@ public class LoginKajariActivity extends AppCompatActivity {
                                                     jsonObject.getString("nama")
                                             )
                                     );
+                                    new Bantuan(context).toastLong("Berhasil Login");
                                     Intent intent = new Intent(context, KajariHomeActivity.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
