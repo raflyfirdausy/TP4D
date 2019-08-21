@@ -71,6 +71,7 @@ public class PetugasActionProsesAwalActivity extends AppCompatActivity {
     private void init() {
         daftarPemohonModel = (DaftarPemohonModel) getIntent().getExtras().getSerializable("data");
 
+//        new Bantuan(context).alertDialogDebugging(daftarPemohonModel.getId_daftar_pemohon());
         etInstansiPemohon = findViewById(R.id.etInstansiPemohon);
         etAlamatInstansi = findViewById(R.id.etAlamatInstansi);
         etNomorSurat = findViewById(R.id.etNomorSurat);

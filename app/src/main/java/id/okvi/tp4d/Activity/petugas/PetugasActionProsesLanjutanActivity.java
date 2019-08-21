@@ -337,7 +337,7 @@ public class PetugasActionProsesLanjutanActivity extends AppCompatActivity
         }
     }
 
-    private void prosesUpdate(final boolean isModeSerahTerima) {
+    private void prosesUpdate(final boolean isModeSerahTerimaLagi) {
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Loading ...");
         progressDialog.setIndeterminate(true);
@@ -356,10 +356,15 @@ public class PetugasActionProsesLanjutanActivity extends AppCompatActivity
                             JSONObject object = new JSONObject(response);
                             if (object.getInt("status") == 1) {
                                 new Bantuan(context).toastLong(object.getString("result"));
+                                Intent intent = new Intent(context, PetugasHomeActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);
+                            } else {
+                                new Bantuan(context).alertDialogPeringatan(object.getString("result"));
                             }
-                            Intent intent = new Intent(context, PetugasHomeActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(intent);
+//                            Intent intent = new Intent(context, PetugasHomeActivity.class);
+//                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                            startActivity(intent);
                         } catch (JSONException e) {
                             new Bantuan(context).toastLong(e.getMessage());
                             e.printStackTrace();
@@ -408,9 +413,12 @@ public class PetugasActionProsesLanjutanActivity extends AppCompatActivity
                 stringMap.put("latitude", (latitude != null && !latitude.isEmpty()) ? latitude : "");
                 stringMap.put("longitude", (longitude != null && !longitude.isEmpty()) ? longitude : "");
 
-                if (isModeSerahTerima) {
-                    stringMap.put("serah_terima", !TextUtils.isEmpty(serah_terima.getEditText().getText().toString()) ? serah_terima.getEditText().getText().toString() : "");
+                if (isModeSerahTerimaLagi) {
+                    stringMap.put("serah_terima", serah_terima.getEditText().getText().toString());
                     stringMap.put("is_serah_terima", "1");
+                } else {
+                    stringMap.put("serah_terima", "0000-00-00");
+                    stringMap.put("is_serah_terima", "0");
                 }
 
                 return stringMap;
